@@ -10,5 +10,8 @@ export const CONSTANTS = {
 
   // Third-party stores/comparators
   DLCOMPARE_SEARCH: (gameName: string) => `https://www.dlcompare.fr/search?q=${encodeURIComponent(gameName)}`,
-  INSTANT_GAMING_SEARCH: (gameName: string) => `https://www.instant-gaming.com/en/search/?query=${encodeURIComponent(gameName)}`
+  INSTANT_GAMING_SEARCH: (gameName: string) => `https://www.instant-gaming.com/en/search/?query=${encodeURIComponent(gameName)}`,
+
+  // Steam Explore
+  STEAM_NEW_COOP_GAMES: 'https://store.steampowered.com/search/?tags=3841,3843,1685,7368,3859'
 };

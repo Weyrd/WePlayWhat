@@ -12,7 +12,8 @@
       "idle": "Wheel decide",
       "pickingEmpty": "Wheel · select games...",
       "pickingActive": "Wheel · {count} selected · Go"
-    }
+    },
+    "newCoopGamesTooltip": "Discover newly released Co-op & Multiplayer games on Steam"
   },
   "tags": {
     "title": "Tags",
