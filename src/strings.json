@@ -7,7 +7,33 @@
     "onlyDiscounted": "Only Discounted",
     "ownedGames": "Owned Games",
     "notOwnedGames": "Not Owned Games",
-    "noGamesFound": "No games found matching your filters."
+    "noGamesFound": "No games found matching your filters.",
+    "wheel": {
+      "idle": "Wheel decide",
+      "pickingEmpty": "Wheel · select games...",
+      "pickingActive": "Wheel · {count} selected · Go"
+    }
+  },
+  "tags": {
+    "title": "Tags",
+    "info": "click tag to cycle state",
+    "legend": {
+      "neutral": "neutral",
+      "ignored": "ignored",
+      "include": "include",
+      "mustHave": "must have",
+      "exclude": "exclude",
+      "hidden": "hidden",
+      "only": "only",
+      "showExclusively": "show exclusively"
+    }
+  },
+  "wheelModal": {
+    "tonightsGame": "Tonight's game",
+    "randomlyPicked_single": "Randomly picked from 1 game",
+    "randomlyPicked_plural": "Randomly picked from {count} games",
+    "pickAgain": "Pick again",
+    "letsPlay": "Let's play!"
   },
   "badges": {
     "owned": "Owned",

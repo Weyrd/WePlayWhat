@@ -25,7 +25,6 @@
   { "id": 2445490, "name": "Up To Par", "owned": true },
   { "id": 865360, "name": "We Were Here Together", "owned": true, "coop": true },
   { "id": 251470, "name": "TowerFall Ascension", "owned": true },
-  { "id": 264710, "name": "Subnautica", "owned": false },
   { "id": 1962700, "name": "Subnautica 2", "owned": false },
   { "id": 1284190, "name": "The Planet Crafter", "owned": false },
   { "id": 632360, "name": "Risk of Rain 2", "owned": false },
@@ -44,5 +43,13 @@
   { "id": 2868840, "name": "Unrailed 2", "owned": true },
   { "id": 105600, "name": "Terraria", "owned": true },
   { "id": 445980, "name": "Wizard of Legend", "owned": true },
-  { "id": 207140, "name": "SpeedRunners", "owned": false }
+  { "id": 207140, "name": "SpeedRunners", "owned": false },
+  { "id": 4069520, "name": "Super Battle Golf", "owned": false },
+  { "id": 548430, "name": "Deep Rock Galactic", "owned": false },
+  { "id": 2794590, "name": "Scam Line", "owned": false },
+  { "id": 3097560, "name": "Liar's Bar", "owned": false },
+  { "id": 1435790, "name": "Escape Simulator", "owned": false },
+  { "id": 4331610, "name": "Dome Keeper The Lost Keepers", "owned": false },
+  { "id": 2780980, "name": "LOCKDOWN Protocol", "owned": false },
+  { "id": 2250500, "name": "Rhythia", "owned": false }
 ]
