@@ -33,5 +33,16 @@
   { "id": 527230, "name": "For The King", "owned": false },
   { "id": 211820, "name": "Starbound", "owned": false },
   { "id": 2787320, "name": "Revenge of the Savage Planet", "owned": false },
-  { "id": 3124540, "name": "Far Far West", "owned": false }
+  { "id": 3124540, "name": "Far Far West", "owned": false },
+  { "id": 1450900, "name": "Desynced", "owned": false },
+  { "id": 431240, "name": "Golf With Your Friends", "owned": true },
+  { "id": 2239140, "name": "Boti: Byteland Overclocked", "owned": true },
+  { "id": 962130, "name": "Grounded", "owned": true },
+  { "id": 905340, "name": "Heave Ho", "owned": true },
+  { "id": 620, "name": "Portal 2", "owned": true, "coop": true },
+  { "id": 526870, "name": "Satisfactory", "owned": true },
+  { "id": 2868840, "name": "Unrailed 2", "owned": true },
+  { "id": 105600, "name": "Terraria", "owned": true },
+  { "id": 445980, "name": "Wizard of Legend", "owned": true },
+  { "id": 207140, "name": "SpeedRunners", "owned": false }
 ]

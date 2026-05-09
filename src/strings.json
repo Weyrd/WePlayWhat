@@ -1,0 +1,41 @@
+{
+  "appTitle": "WePlayWhat?",
+  "ui": {
+    "searchPlaceholder": "Search games...",
+    "filterCoopTitle": "Filter Co-op games",
+    "coopOnly": "Co-op Only",
+    "onlyDiscounted": "Only Discounted",
+    "ownedGames": "Owned Games",
+    "notOwnedGames": "Not Owned Games",
+    "noGamesFound": "No games found matching your filters."
+  },
+  "badges": {
+    "owned": "Owned",
+    "notOwned": "Not Owned",
+    "coop": "Co-op",
+    "remotePlay": "Remote Play"
+  },
+  "status": {
+    "loading": "Loading...",
+    "failedToLoad": "Failed to load",
+    "lastFetched": "Last fetched:"
+  },
+  "price": {
+    "unavailable": "Price Unavailable",
+    "free": "Free"
+  },
+  "modal": {
+    "developer": "Developer:",
+    "release": "Release:",
+    "noDescription": "No description available.",
+    "links": {
+      "steam": "Open in Steam",
+      "dlCompare": "Check DLCompare",
+      "instantGaming": "Instant Gaming"
+    }
+  },
+  "toasts": {
+    "refreshing": "Fetching new games data...",
+    "updated": "Data successfully updated!"
+  }
+}

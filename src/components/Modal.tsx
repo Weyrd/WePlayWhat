@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import type { FetchedGame } from '../types';
+import type { Game } from '../models/Game';
+import strings from '../strings.json';
 
 interface ModalProps {
-  game: FetchedGame;
+  game: Game;
   onClose: () => void;
 }
 
 export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
   const [imgIndex, setImgIndex] = useState(0);
 
-  const images = [game.headerImage, ...game.screenshots];
+  const images = [];
+  if (game.header_image) images.push(game.header_image);
+  if (game.screenshots) {
+    images.push(...game.screenshots.map(s => s.path_full));
+  }
   
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={onClose}>
@@ -18,7 +23,13 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
         onClick={e => e.stopPropagation()}
       >
         <div className="relative group">
-          <img src={images[imgIndex]} alt={game.steamName} className="w-full h-64 object-cover" />
+          {images.length > 0 ? (
+            <img src={images[imgIndex]} alt={game.name} className="w-full h-64 object-cover" />
+          ) : (
+            <div className="w-full h-64 bg-gray-800 animate-pulse flex items-center justify-center">
+              <span className="text-gray-500 font-medium">{strings.status.loading}</span>
+            </div>
+          )}
           {images.length > 1 && (
             <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity">
               <button 
@@ -57,41 +68,40 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
         
         <div className="p-6 overflow-y-auto">
           <div className="flex justify-between items-start mb-2 gap-4">
-            <h2 className="text-2xl font-bold">{game.steamName}</h2>
-            {game.isUpdating && (
-              <span className="shrink-0 text-yellow-400 bg-yellow-400/10 border border-yellow-400/20 px-2 py-1 rounded text-xs font-medium animate-pulse">
-                Updating Cache...
-              </span>
-            )}
+            <h2 className="text-2xl font-bold">{game.name}</h2>
           </div>
           
-          <div className="flex flex-wrap items-center gap-4 text-xs text-gray-400 mb-4 min-h-[1.25rem]">
-            {game.fetchStatus === 'loading' && !game.developers?.length ? (
+          <div className="flex flex-wrap items-center gap-4 text-xs text-gray-400 mb-4 min-h-5">
+            {!game.lastFetched && !game.developers?.length ? (
                <div className="h-4 w-32 bg-gray-700 animate-pulse rounded" />
             ) : game.developers && game.developers.length > 0 && (
-              <span><span className="font-semibold text-gray-300">Developer:</span> {game.developers.join(', ')}</span>
+              <span><span className="font-semibold text-gray-300">{strings.modal.developer}</span> {game.developers.join(', ')}</span>
             )}
             
-            {game.fetchStatus === 'loading' && !game.releaseDate ? (
+            {!game.lastFetched && !game.release_date?.date ? (
                <div className="h-4 w-24 bg-gray-700 animate-pulse rounded" />
-            ) : game.releaseDate && (
-              <span><span className="font-semibold text-gray-300">Release:</span> {game.releaseDate}</span>
+            ) : game.release_date?.date && (
+              <span><span className="font-semibold text-gray-300">{strings.modal.release}</span> {game.release_date.date}</span>
             )}
 
             {game.isCoop && (
-              <span className="text-blue-400 font-semibold border border-blue-400/30 bg-blue-400/10 px-1.5 rounded">Co-op</span>
+              <span className="text-blue-400 font-semibold border border-blue-400/30 bg-blue-400/10 px-1.5 rounded">{strings.badges.coop}</span>
+            )}
+            
+            {game.isRemotePlay && (
+              <span className="text-purple-400 font-semibold border border-purple-400/30 bg-purple-400/10 px-1.5 rounded">{strings.badges.remotePlay}</span>
             )}
           </div>
 
-          <div className="mb-6 min-h-[4rem]">
-            {game.fetchStatus === 'loading' && !game.shortDescription ? (
+          <div className="mb-6 min-h-16">
+            {!game.lastFetched && !game.short_description ? (
               <div className="space-y-2">
                 <div className="h-4 bg-gray-700 animate-pulse rounded w-full"></div>
                 <div className="h-4 bg-gray-700 animate-pulse rounded w-11/12"></div>
                 <div className="h-4 bg-gray-700 animate-pulse rounded w-4/5"></div>
               </div>
             ) : (
-              <p className="text-gray-300 text-sm" dangerouslySetInnerHTML={{ __html: game.shortDescription || 'No description available.' }} />
+              <p className="text-gray-300 text-sm" dangerouslySetInnerHTML={{ __html: game.short_description || strings.modal.noDescription }} />
             )}
           </div>
           
@@ -102,7 +112,7 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
               rel="noreferrer"
               className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-center py-2 px-4 rounded-lg font-medium transition-colors"
             >
-              Open in Steam
+              {strings.modal.links.steam}
             </a>
             {!game.owned && (
               <>
@@ -112,7 +122,7 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
                   rel="noreferrer"
                   className="flex-1 bg-purple-600 hover:bg-purple-700 text-white text-center py-2 px-4 rounded-lg font-medium transition-colors"
                 >
-                  Check DLCompare
+                  {strings.modal.links.dlCompare}
                 </a>
                 <a 
                   href={game.instantGamingUrl} 
@@ -120,7 +130,7 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
                   rel="noreferrer"
                   className="flex-1 bg-orange-600 hover:bg-orange-700 text-white text-center py-2 px-4 rounded-lg font-medium transition-colors"
                 >
-                  Instant Gaming
+                  {strings.modal.links.instantGaming}
                 </a>
               </>
             )}
