@@ -9,11 +9,11 @@ interface BadgeProps {
 export const Badge: React.FC<BadgeProps> = ({ type }) => {
   const badgeConfig = {
     [BadgeType.COOP]: {
-      className: "text-blue-400 bg-blue-400/10 border border-blue-400/20",
+      className: "text-orange-400 bg-orange-400/10 border border-orange-400/25",
       label: strings.badges.coop
     },
     [BadgeType.OWNED]: {
-      className: "text-green-400 bg-green-400/10 border border-green-400/20",
+      className: "text-green-400 bg-green-500/10 border border-green-500/25",
       label: strings.badges.owned
     },
     [BadgeType.NOT_OWNED]: {
@@ -21,8 +21,12 @@ export const Badge: React.FC<BadgeProps> = ({ type }) => {
       label: strings.badges.notOwned
     },
     [BadgeType.REMOTE_PLAY]: {
-      className: "text-purple-400 bg-purple-400/10 border border-purple-400/20",
+      className: "text-violet-400 bg-violet-500/10 border border-violet-500/25",
       label: strings.badges.remotePlay
+    },
+    [BadgeType.FREE]: {
+      className: "text-sky-400 bg-sky-400/10 border border-sky-400/25",
+      label: strings.badges.free
     }
   };
 

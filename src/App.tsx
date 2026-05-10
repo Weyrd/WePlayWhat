@@ -30,6 +30,7 @@ function App() {
     { label: FilterTag.OWNED, state: 'ignore' },
     { label: FilterTag.REMOTE_PLAY, state: 'ignore' },
     { label: FilterTag.COOP, state: 'ignore' },
+    { label: FilterTag.FREE, state: 'ignore' },
   ]);
 
   const cycleTagState = (label: string) =>
@@ -118,6 +119,7 @@ function App() {
       if (label === FilterTag.COOP) return game.isCoop ?? false;
       if (label === FilterTag.REMOTE_PLAY) return game.isRemotePlay ?? false;
       if (label === FilterTag.OWNED) return game.owned ?? false;
+      if (label === FilterTag.FREE) return game.is_free ?? false;
 
       const l = label.toLowerCase();
       return game.categories?.some(c => c.description.toLowerCase().includes(l)) ?? false;
@@ -193,7 +195,11 @@ function App() {
       </main>
 
       {selectedGame && wheelMode === 'idle' && (
-        <Modal key={selectedGame.id} game={selectedGame} onClose={() => setSelectedGameId(null)} />
+        <Modal 
+          key={selectedGame.id} 
+          game={selectedGame} 
+          onClose={() => setSelectedGameId(null)} 
+        />
       )}
 
       {wheelMode === 'result' && wheelResult && (

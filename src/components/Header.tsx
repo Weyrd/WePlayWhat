@@ -26,7 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto relative flex flex-col md:flex-row gap-4 items-center justify-between">
         {/* Left: Brand */}
         <div className="flex justify-center md:justify-start flex-1 w-full md:w-auto">
-          <h1 className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+          <h1 className="text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-purple-500">
             {strings.appTitle}
           </h1>
         </div>
@@ -89,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
             rel="noopener noreferrer"
             title={strings.ui.newCoopGamesTooltip}
             aria-label={strings.ui.newCoopGamesTooltip}
-            className="flex items-center justify-center px-3 py-1.5 rounded-lg border text-sm transition-colors border-gray-600 text-gray-300 bg-gray-700 hover:bg-gray-600 h-[34px]"
+            className="flex items-center justify-center px-3 py-1.5 rounded-lg border text-sm transition-colors border-gray-600 text-gray-300 bg-gray-700 hover:bg-gray-600 h-8.5"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10"/>

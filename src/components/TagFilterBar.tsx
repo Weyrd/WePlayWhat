@@ -1,4 +1,3 @@
-// components/TagFilterBar.tsx
 import React from 'react';
 import type { TagFilter, TagState } from '../App';
 import strings from '../strings.json';
@@ -113,10 +112,10 @@ export function TagFilterBar({ tags, onCycle }: Props) {
             return (
               <React.Fragment key={state}>
                 {index > 0 && (
-                  <div className="w-[1px] h-6 bg-white/[0.08] mx-2 hidden sm:block"></div>
+                  <div className="w-px h-6 bg-white/8 mx-2 hidden sm:block"></div>
                 )}
-                <div className="group flex items-center gap-2 cursor-pointer transition-all duration-[180ms] ease-in-out">
-                  <div className={`flex items-center justify-center transition-all duration-[180ms] ease-in-out ${conf.colorClass}`}>
+                <div className="group flex items-center gap-2 cursor-pointer transition-all duration-180 ease-in-out">
+                  <div className={`flex items-center justify-center transition-all duration-180 ease-in-out ${conf.colorClass}`}>
                     {React.cloneElement(conf.icon as React.ReactElement<React.SVGProps<SVGSVGElement>>, { width: 16, height: 16 })}
                   </div>
                   <div className="flex flex-col gap-0.5">

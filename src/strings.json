@@ -40,7 +40,8 @@
     "owned": "Owned",
     "notOwned": "Not Owned",
     "coop": "Co-op",
-    "remotePlay": "Remote Play"
+    "remotePlay": "Remote Play",
+    "free": "Free"
   },
   "status": {
     "loading": "Loading...",
@@ -55,6 +56,29 @@
     "developer": "Developer:",
     "release": "Release:",
     "noDescription": "No description available.",
+    "tabs": {
+      "overview": "Overview",
+      "dlc": "DLC",
+      "achievements": "Achievements",
+      "similar": "Similar"
+    },
+    "stats": {
+      "dlc": "DLC",
+      "achievements": "Achievements",
+      "metacritic": "Metacritic"
+    },
+    "genres": "Genres",
+    "features": "Features",
+    "noDlcAvailable": "No DLC available",
+    "noAchievementsAvailable": "No achievements data available",
+    "achievementsTotal": "Total: {count}",
+    "similarGamesComingSoon": "Similar games coming soon — requires Steam tag API",
+    "browseOnSteam": "Browse on Steam",
+    "buttons": {
+      "openInSteam": "Open in Steam",
+      "dlCompare": "DLCompare",
+      "instantGaming": "Instant Gaming"
+    },
     "links": {
       "steam": "Open in Steam",
       "dlCompare": "Check DLCompare",
@@ -63,6 +87,7 @@
   },
   "toasts": {
     "refreshing": "Fetching new games data...",
-    "updated": "Data successfully updated!"
+    "updated": "Data successfully updated!",
+    "dlcFetchError": "Failed to load DLC data"
   }
 }

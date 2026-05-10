@@ -19,12 +19,12 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
     : '';
 
   return (
-    <div 
-      className={`bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform relative ${ringClass}`}
+    <div
+      className={`bg-[#161b27] border border-[#2a2d3a] rounded-lg overflow-hidden cursor-pointer hover:border-violet-600/50 transition-colors relative ${ringClass}`}
       onClick={() => onClick(game)}
     >
       {isWheelPicking && (
-        <div className={`absolute top-2 right-2 w-5 h-5 rounded flex items-center justify-center border transition-colors z-10 ${
+        <div className={`absolute top-2 left-2 w-5 h-5 rounded-lg flex items-center justify-center border transition-colors z-10 ${
           isWheelSelected
             ? 'bg-purple-500 border-purple-400'
             : 'bg-gray-900/70 border-gray-500'
@@ -41,15 +41,40 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
         alt={game.name} 
         className="w-full h-32 object-cover bg-gray-700" 
       />
+
       <div className="p-4">
         <h3 className="font-bold text-lg truncate mb-2">{game.name}</h3>
-        <div className="flex justify-between items-center text-sm font-medium mb-3">
+        <div className="flex justify-between items-center text-sm font-medium">
           {!game.owned && (
-            <div className="flex items-center gap-2">
-              <span className="text-white">{game.price_overview?.final_formatted || strings.price.free}</span>
-              {(game.price_overview?.discount_percent || 0) > 0 && (
-                <span className="bg-green-500 text-white px-1.5 py-0.5 rounded text-xs">
-                 -{game.price_overview?.discount_percent}%
+            <div className="flex items-center gap-2 mb-3">
+              {(game.price_overview?.discount_percent || 0) > 0 ? (
+                // Tag badge: prices left + discount right
+                <div className="inline-flex items-stretch rounded overflow-hidden border border-green-500/25">
+                  {/* Left segment — current + original price */}
+                  <div className="flex flex-col justify-center gap-0.5 px-2 py-1 bg-green-500/10">
+                    <span className="text-green-400 text-sm font-semibold leading-none">
+                      {game.price_overview?.final_formatted}
+                    </span>
+                    <span className="text-gray-500 text-[10px] line-through leading-none">
+                      {game.price_overview?.initial_formatted}
+                    </span>
+                  </div>
+                  {/* Right segment — discount % */}
+                  <div className="flex items-center px-2 py-1 bg-green-500/20 border-l border-green-500/25">
+                    <span className="text-green-400 text-xs font-semibold uppercase tracking-wider">
+                      −{game.price_overview?.discount_percent}%
+                    </span>
+                  </div>
+                </div>
+              ) : game.is_free ? (
+                // Free badge — matches FREE badge style
+                <span className="px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-400/10 border border-sky-400/25">
+                  {strings.price.free}
+                </span>
+              ) : (
+                // Plain price — no discount
+                <span className="px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wider text-gray-400 bg-gray-400/10 border border-gray-400/20">
+                  {game.price_overview?.final_formatted || strings.price.free}
                 </span>
               )}
             </div>
@@ -63,6 +88,7 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
           )}
           {game.isRemotePlay && <Badge type={BadgeType.REMOTE_PLAY} />}
           {game.isCoop && <Badge type={BadgeType.COOP} />}
+          {game.is_free && <Badge type={BadgeType.FREE} />}
         </div>
       </div>
     </div>
