@@ -40,6 +40,9 @@ export const fetchSteamData = async (
     const apiUrl = CONSTANTS.STEAM_API_APP_DETAILS(game.id, GAME_DETAILS_FILTERS);
 
     const data = await fetchProxy<SteamAppDetailsResponse>(apiUrl);
+    if (!data || typeof data !== "object") {
+      throw new Error("Invalid Steam response format");
+    }
 
     const appData = data[game.id.toString()];
     if (!appData || !appData.success || !appData.data) {
