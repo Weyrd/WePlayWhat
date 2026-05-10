@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function WheelModal({ games: initialGames, onClose }: Props) {
-  const [mode, setMode] = useState<WheelMode>('cards');
+  const [mode, setMode] = useState<WheelMode>('wheel');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentWinner, setCurrentWinner] = useState<Game | null>(null);
   const [pool, setPool] = useState<Game[]>(initialGames);
