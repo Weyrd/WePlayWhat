@@ -310,7 +310,7 @@ export const GameDetailModal: React.FC<GameDetailModalProps> = ({ game, onClose 
                 <div className="h-3 bg-gray-700 animate-pulse rounded w-4/5"></div>
               </div>
             ) : (
-              <p className="text-[12px] text-slate-400 leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{ __html: game.short_description || strings.modal.noDescription }} />
+              <p className="text-[12px] text-slate-400 leading-relaxed line-clamp-10" dangerouslySetInnerHTML={{ __html: game.short_description || strings.modal.noDescription }} />
             )}
           </div>
 

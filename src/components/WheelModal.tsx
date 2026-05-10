@@ -64,7 +64,7 @@ export function WheelModal({ games: initialGames, onClose }: Props) {
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div
-        className="relative bg-[#0d1117] border border-[#1e2332] rounded-2xl shadow-2xl flex overflow-hidden"
+        className="relative min-h-150 bg-[#0d1117] border border-[#1e2332] rounded-2xl shadow-2xl flex overflow-hidden"
         style={{ width: modalWidth, maxHeight: '92vh', transition: 'width 0.35s ease' }}
         onClick={e => e.stopPropagation()}
       >

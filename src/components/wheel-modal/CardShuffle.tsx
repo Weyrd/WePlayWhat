@@ -214,7 +214,7 @@ export function CardShuffle({ games, onWinner }: Props) {
                 transformOrigin: 'bottom center',
                 transition: posTrans,
                 cursor: phase === 'facedown' && pickedIdx === null ? 'pointer' : 'default',
-                zIndex: isPicked ? 50 : c.zIndex,
+                zIndex: c.zIndex,
                 borderRadius: 8,
                 overflow: 'hidden',
                 boxShadow: glowing
