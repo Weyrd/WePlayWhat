@@ -29,7 +29,6 @@
   { "id": 3892270, "name": "Gamble With Your Friends", "owned": false },
   { "id": 4461800, "name": "Mom Life Simulator", "owned": false },
   { "id": 3756780, "name": "Anime Minesweeper", "owned": false },
-  { "id": 3399950, "name": "Your Mother", "owned": false },
   { "id": 2904000, "name": "The Spell Brigade", "owned": false },
   { "id": 3618030, "name": "Flock Around", "owned": false },
   { "id": 3767320, "name": "Animula Nook", "owned": false },
@@ -60,5 +59,18 @@
   { "id": 1435790, "name": "Escape Simulator", "owned": false },
   { "id": 4331610, "name": "Dome Keeper The Lost Keepers", "owned": false },
   { "id": 2780980, "name": "LOCKDOWN Protocol", "owned": false },
-  { "id": 2250500, "name": "Rhythia", "owned": false }
+  { "id": 2250500, "name": "Rhythia", "owned": false },
+  { "id": 3527290, "name": "PEAK", "owned": false },
+  { "id": 3161310, "name": "Hela of Mice & Magic", "owned": false },
+  { "id": 837470, "name": "Untitled Goose Game", "owned": false },
+  { "id": 972660, "name": "Spiritfarer: Farewell Edition", "owned": false },
+  { "id": 2325290, "name": "Sky: Children of the Light", "owned": false },
+  { "id": 1225570, "name": "Unravel Two", "owned": false, "duo": true },
+  { "id": 1313140, "name": "Cult of the Lamb", "owned": false },
+  { "id": 323850, "name": "Move or Die", "owned": false },
+  { "id": 3003460, "name": "Bang Bang Barrage", "owned": false },
+  { "id": 1242980, "name": "KeyWe", "owned": false, "duo": true },
+  { "id": 1614550, "name": "Astro Colony", "owned": false },
+  { "id": 1127400, "name": "Mindustry", "owned": false },
+  { "id": 1062090, "name": "Timberborn", "owned": false }
 ]
