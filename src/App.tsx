@@ -3,12 +3,13 @@ import type { Game } from './models/Game';
 import { FilterTag } from './models/FilterTag';
 import { Header } from './components/Header';
 import { GameGrid } from './components/GameGrid';
-import { Modal } from './components/Modal';
+import { GameDetailModal } from './components/GameDetailModal';
 import { TagFilterBar } from './components/TagFilterBar';
 import { WheelModal } from './components/WheelModal';
 import { useGames, TableScope } from './hooks/useGames';
 import { Toaster } from 'react-hot-toast';
 import strings from './strings.json';
+import { isGameFree } from './utils/gameFlags';
 
 export type TagState = 'ignore' | 'include' | 'exclude' | 'only';
 
@@ -50,7 +51,6 @@ function App() {
   // --- wheel ---
   const [wheelMode, setWheelMode] = useState<WheelMode>('idle');
   const [wheelSelected, setWheelSelected] = useState<Set<number>>(new Set());
-  const [wheelResult, setWheelResult] = useState<Game | null>(null);
 
   const handleWheelBtn = () => {
     if (wheelMode === 'idle') {
@@ -63,9 +63,6 @@ function App() {
         setWheelMode('idle');
         return;
       }
-      const pool = games.filter(g => wheelSelected.has(g.id));
-      const winner = pool[Math.floor(Math.random() * pool.length)];
-      setWheelResult(winner);
       setWheelMode('result');
     }
   };
@@ -73,7 +70,6 @@ function App() {
   const closeWheel = () => {
     setWheelMode('idle');
     setWheelSelected(new Set());
-    setWheelResult(null);
   };
 
   const toggleWheelSelect = (game: Game) => {
@@ -119,7 +115,7 @@ function App() {
       if (label === FilterTag.COOP) return game.isCoop ?? false;
       if (label === FilterTag.REMOTE_PLAY) return game.isRemotePlay ?? false;
       if (label === FilterTag.OWNED) return game.owned ?? false;
-      if (label === FilterTag.FREE) return game.is_free ?? false;
+      if (label === FilterTag.FREE) return isGameFree(game);
 
       const l = label.toLowerCase();
       return game.categories?.some(c => c.description.toLowerCase().includes(l)) ?? false;
@@ -195,22 +191,16 @@ function App() {
       </main>
 
       {selectedGame && wheelMode === 'idle' && (
-        <Modal 
+        <GameDetailModal
           key={selectedGame.id} 
           game={selectedGame} 
           onClose={() => setSelectedGameId(null)} 
         />
       )}
 
-      {wheelMode === 'result' && wheelResult && (
+      {wheelMode === 'result' && (
         <WheelModal
-          winner={wheelResult}
-          totalCount={wheelSelected.size}
-          onPickAgain={() => {
-            const pool = games.filter(g => wheelSelected.has(g.id));
-            const winner = pool[Math.floor(Math.random() * pool.length)];
-            setWheelResult(winner);
-          }}
+          games={games.filter(g => wheelSelected.has(g.id))}
           onClose={closeWheel}
         />
       )}

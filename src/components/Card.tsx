@@ -3,6 +3,7 @@ import type { Game } from '../models/Game';
 import { Badge } from './Badge';
 import { BadgeType } from '../models/Badge';
 import strings from '../strings.json';
+import { isGameFree } from '../utils/gameFlags';
 
 interface CardProps {
   game: Game;
@@ -12,6 +13,7 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = false, isWheelSelected = false }) => {
+  const gameIsFree = isGameFree(game);
   const ringClass = isWheelSelected
     ? 'ring-2 ring-purple-500 ring-offset-2 ring-offset-gray-900'
     : isWheelPicking
@@ -66,7 +68,7 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
                     </span>
                   </div>
                 </div>
-              ) : game.is_free ? (
+              ) : gameIsFree ? (
                 // Free badge — matches FREE badge style
                 <span className="px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wider text-sky-400 bg-sky-400/10 border border-sky-400/25">
                   {strings.price.free}
@@ -74,7 +76,7 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
               ) : (
                 // Plain price — no discount
                 <span className="px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wider text-gray-400 bg-gray-400/10 border border-gray-400/20">
-                  {game.price_overview?.final_formatted || strings.price.free}
+                  {game.price_overview?.final_formatted || strings.price.unavailable}
                 </span>
               )}
             </div>
@@ -88,7 +90,7 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
           )}
           {game.isRemotePlay && <Badge type={BadgeType.REMOTE_PLAY} />}
           {game.isCoop && <Badge type={BadgeType.COOP} />}
-          {game.is_free && <Badge type={BadgeType.FREE} />}
+          {game.owned && gameIsFree && <Badge type={BadgeType.FREE} />}
         </div>
       </div>
     </div>

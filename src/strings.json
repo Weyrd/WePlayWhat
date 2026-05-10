@@ -34,7 +34,34 @@
     "randomlyPicked_single": "Randomly picked from 1 game",
     "randomlyPicked_plural": "Randomly picked from {count} games",
     "pickAgain": "Pick again",
-    "letsPlay": "Let's play!"
+    "letsPlay": "Let's play!",
+    "emptyPool": "No games left in the pool.",
+    "close": "Close",
+    "poolCountInPool_single": "{count} game in the pool",
+    "poolCountInPool_plural": "{count} games in the pool",
+    "titleWheel": "Spin the wheel",
+    "titleCards": "Pick a card",
+    "buttons": {
+      "openInSteam": "Open in Steam",
+      "tryAgain": "Try again",
+      "spin": "Spin!",
+      "spinAgain": "Spin again",
+      "spinning": "Spinning…",
+      "shuffle": "Shuffle!",
+      "shuffleAgain": "Shuffle again",
+      "shuffling": "Shuffling…"
+    },
+    "cards": {
+      "statusSpread": "Cards face up · Press shuffle to begin",
+      "statusFaceDown": "Pick the highlighted card, or choose another"
+    },
+    "settings": {
+      "mode": "Mode",
+      "pool": "Pool",
+      "modeWheel": "Spinning wheel",
+      "modeCards": "Card shuffle",
+      "remove": "Remove"
+    }
   },
   "badges": {
     "owned": "Owned",

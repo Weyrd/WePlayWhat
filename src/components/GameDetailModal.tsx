@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Users, Columns, Share2, Gamepad2, Trophy, Cloud, SlidersHorizontal, User, SquareArrowOutUpRight, Tag, Zap, ExternalLink, ChevronLeft, ChevronRight, X, Award, type LucideIcon } from 'lucide-react';
+import { Users, Columns, Share2, Gamepad2, Trophy, Cloud, SlidersHorizontal, User, SquareArrowOutUpRight, Tag, Zap, ExternalLink, ChevronLeft, ChevronRight, Award, type LucideIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 import type { Game } from '../models/Game';
 import type { SteamDlcDetailsData } from '../models/Steam';
@@ -7,8 +7,9 @@ import strings from '../strings.json';
 import { fetchDlcData } from '../services/steam';
 import { Badge } from './Badge';
 import { BadgeType } from '../models/Badge';
+import { isGameFree } from '../utils/gameFlags';
 
-interface ModalProps {
+interface GameDetailModalProps {
   game: Game;
   onClose: () => void;
 }
@@ -33,7 +34,8 @@ const FEAT_MAP: Record<number, { label: string; icon: LucideIcon; highlight: boo
    1: { label: 'Multiplayer',      icon: Users,             highlight: false },
 };
 
-export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
+export const GameDetailModal: React.FC<GameDetailModalProps> = ({ game, onClose }) => {
+  const gameIsFree = isGameFree(game);
   const [imgIndex, setImgIndex] = useState(0);
   const [activeTab, setActiveTab] = useState<ModalTab>(ModalTab.OVERVIEW);
   const [dlcData, setDlcData] = useState<Record<string, SteamDlcDetailsData>>({});
@@ -80,6 +82,14 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
     }
   }, [activeTab, dlcData, handleFetchDlc]);
 
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
+
   const dlcCount = game.dlc?.length ?? 0;
   const achievementsTotal = game.achievements?.total ?? 0;
   const metacriticScore = game.metacritic?.score;
@@ -96,7 +106,10 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
     .map(c => ({ id: c.id, ...FEAT_MAP[c.id] }));
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+      onClick={onClose}
+    >
       <div 
         className="bg-[#161b27] border border-[#2a2d3a] rounded-xl overflow-hidden shadow-2xl max-w-2xl w-full flex flex-col max-h-[90vh]"
         onClick={e => e.stopPropagation()}
@@ -117,24 +130,26 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
           {images.length > 1 && (
             <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
               <button
-                className="bg-black/50 text-white p-2 rounded-full hover:bg-black/80 pointer-events-auto"
+                className="w-8 h-8 rounded-lg bg-[#161b27] border border-[#2a2d3a] flex items-center justify-center text-gray-400 hover:text-white transition-colors pointer-events-auto"
                 onClick={(e) => { e.stopPropagation(); goTo(imgIndex - 1); }}
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={14} strokeWidth={2.5} />
               </button>
               <button
-                className="bg-black/50 text-white p-2 rounded-full hover:bg-black/80 pointer-events-auto"
+                className="w-8 h-8 rounded-lg bg-[#161b27] border border-[#2a2d3a] flex items-center justify-center text-gray-400 hover:text-white transition-colors pointer-events-auto"
                 onClick={(e) => { e.stopPropagation(); goTo(imgIndex + 1); }}
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={14} strokeWidth={2.5} />
               </button>
             </div>
           )}
           <button
-            className="absolute top-2 right-2 bg-black/50 text-white w-8 h-8 rounded-full hover:bg-black/80 flex items-center justify-center z-10"
+            className="absolute top-2 right-2 w-8 h-8 rounded-lg bg-[#161b27] border border-[#2a2d3a] flex items-center justify-center text-gray-400 hover:text-white transition-colors z-10"
             onClick={(e) => { e.stopPropagation(); onClose(); }}
           >
-            <X size={20} />
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
           </button>
           
           {/* Image indicator dots */}
@@ -187,7 +202,7 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
                 {game.owned && <Badge type={BadgeType.OWNED} />}
                 {game.isRemotePlay && <Badge type={BadgeType.REMOTE_PLAY} />}
                 {game.isCoop && <Badge type={BadgeType.COOP} />}
-                {game.is_free && <Badge type={BadgeType.FREE} />}
+                {gameIsFree && <Badge type={BadgeType.FREE} />}
               </div>
             </div>
           </div>
@@ -220,11 +235,11 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
                   {!game.owned && (
                     <div className="flex items-stretch bg-[#0d1117] border border-green-500/20 rounded-lg overflow-hidden">
                       {/* Left — prices */}
-                      <div className="flex-1 flex flex-col items-center justify-center px-2.5 py-[7px] border-r border-green-500/15">
+                      <div className="flex-1 flex flex-col items-center justify-center px-2.5 py-1.75 border-r border-green-500/15">
                         <span className="text-[13px] font-medium text-green-400 leading-none">
-                          {game.is_free || game.price_overview?.final === 0
+                          {gameIsFree
                             ? strings.price.free
-                            : game.price_overview?.final_formatted || '—'}
+                            : game.price_overview?.final_formatted || strings.price.unavailable}
                         </span>
                         {(game.price_overview?.discount_percent ?? 0) > 0 && (
                           <span className="text-[10px] text-gray-600 line-through leading-none mt-1">
@@ -233,7 +248,7 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
                         )}
                       </div>
                       {/* Right — discount */}
-                      <div className="flex flex-col items-center justify-center px-3 py-[7px] bg-green-500/8">
+                      <div className="flex flex-col items-center justify-center px-3 py-1.75 bg-green-500/8">
                         <span className={`text-[13px] font-semibold leading-none ${(game.price_overview?.discount_percent ?? 0) > 0 ? 'text-green-400' : 'text-gray-600'}`}>
                           {(game.price_overview?.discount_percent ?? 0) > 0
                             ? `−${game.price_overview?.discount_percent}%`
@@ -248,7 +263,7 @@ export const Modal: React.FC<ModalProps> = ({ game, onClose }) => {
                   {game.owned && (
                     <div className="bg-[#0d1117] border border-[#1e2332] rounded-lg p-[7px_10px] text-center flex flex-col justify-center">
                       <span className="text-[13px] font-medium text-green-400">
-                        {game.is_free ? strings.price.free : (game.price_overview?.final_formatted || '—')}
+                        {gameIsFree ? strings.price.free : (game.price_overview?.final_formatted || strings.price.unavailable)}
                       </span>
                     </div>
                   )}
