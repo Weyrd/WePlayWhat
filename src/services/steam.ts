@@ -33,7 +33,7 @@ export const fetchSteamData = async (
     steamUrl,
     dlCompareUrl,
     instantGamingUrl,
-    isCoop: game.coop || false,
+    isDuo: game.duo || false,
   };
 
   try {

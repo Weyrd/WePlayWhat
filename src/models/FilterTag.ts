@@ -1,5 +1,5 @@
 export const FilterTag = {
-  COOP: 'Co-op',
+  DUO: 'Duo',
   REMOTE_PLAY: 'Remote Play',
   OWNED: 'Owned',
   FREE: 'Free',

@@ -4,14 +4,14 @@ export interface LocalGame {
   id: number;
   name: string;
   owned: boolean;
-  coop?: boolean;
+  duo?: boolean;
 }
 
 export type Game = LocalGame & Partial<SteamAppDetailsData> & {
   steamUrl: string;
   dlCompareUrl: string;
   instantGamingUrl: string;
-  isCoop: boolean;
+  isDuo: boolean;
   isRemotePlay?: boolean;
   lastFetched?: number;
 };

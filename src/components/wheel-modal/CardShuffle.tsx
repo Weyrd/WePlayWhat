@@ -18,7 +18,7 @@ interface Props {
   onWinner: (game: Game) => void;
 }
 
-const FAN_EDGE_PADDING_PCT = 16;
+const FAN_EDGE_PADDING_PCT = 20;
 
 function buildFan(n: number): CardPos[] {
   return Array.from({ length: n }, (_, i) => {
@@ -53,8 +53,8 @@ export function CardShuffle({ games, onWinner }: Props) {
   const [suggestedIdx, setSuggestedIdx] = useState<number | null>(null);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [pickedIdx, setPickedIdx] = useState<number | null>(null);
-  const CARD_W = 64;
-  const CARD_H = 96;
+  const CARD_W = 81;
+  const CARD_H = 122;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -132,11 +132,12 @@ export function CardShuffle({ games, onWinner }: Props) {
     }, flipDelay);
   }, [phase, n, isAnimating]);
 
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (phase !== 'facedown' || pickedIdx !== null) return;
+  const getClosestIndex = useCallback((clientX: number): number | null => {
+    if (n === 0) return null;
     const rect = containerRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    const mouseX = e.clientX - rect.left;
+    if (!rect) return null;
+
+    const mouseX = clientX - rect.left;
     const centers = cards.map(c => {
       const baseCenter = (c.x / 100) * rect.width + c.offsetX;
       const rad = (c.rotation * Math.PI) / 180;
@@ -158,8 +159,15 @@ export function CardShuffle({ games, onWinner }: Props) {
       }
     }
 
-    setHoveredIdx(closestIdx);
-  }, [phase, pickedIdx, n, cards, CARD_H]);
+    return closestIdx;
+  }, [cards, n, CARD_H]);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const canTrackHover = (phase === 'facedown' && pickedIdx === null) || phase === 'picked';
+    if (!canTrackHover) return;
+    const closestIdx = getClosestIndex(e.clientX);
+    if (closestIdx !== null) setHoveredIdx(closestIdx);
+  }, [phase, pickedIdx, getClosestIndex]);
 
   const handleMouseLeave = useCallback(() => setHoveredIdx(null), []);
 
@@ -171,6 +179,12 @@ export function CardShuffle({ games, onWinner }: Props) {
     onWinner(displayGames[idx]);
   }, [phase, pickedIdx, displayGames, onWinner]);
 
+  const handleContainerClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (phase !== 'facedown' || pickedIdx !== null) return;
+    const closestIdx = getClosestIndex(e.clientX);
+    if (closestIdx !== null) pickCard(closestIdx);
+  }, [phase, pickedIdx, getClosestIndex, pickCard]);
+
   return (
     <div className="flex flex-col items-center gap-4 w-full">
       <div
@@ -179,19 +193,24 @@ export function CardShuffle({ games, onWinner }: Props) {
         style={{ height: CARD_H + 60, overflow: 'visible' }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        onClick={handleContainerClick}
       >
         {displayGames.map((game, i) => {
           const c = cards[i] ?? { x: 50, rotation: 0, offsetX: 0, offsetY: 0, zIndex: i, faceUp: true };
 
           const isSuggested = phase === 'facedown' && i === suggestedIdx && pickedIdx === null;
           const isPicked = pickedIdx === i;
+          const isRevealHover = hoveredIdx === i && phase === 'picked' && pickedIdx !== null && i !== pickedIdx;
           const isHovOnly = hoveredIdx === i && phase === 'facedown' && pickedIdx === null && i !== suggestedIdx;
+          const isHovered = isHovOnly || isRevealHover;
           const glowing = isSuggested || isPicked;
+          const isFrontVisible = c.faceUp || isRevealHover;
+          const flipTransition = isRevealHover ? 'transform 0.29s ease' : 'transform 0.4s ease';
 
           const lift =
             isPicked ? 40 :
             isSuggested ? 28 :
-            isHovOnly ? 14 :
+            isHovered ? 20 :
             0;
 
           const posTrans =
@@ -203,7 +222,6 @@ export function CardShuffle({ games, onWinner }: Props) {
           return (
             <div
               key={game.id}
-              onClick={() => pickCard(i)}
               style={{
                 position: 'absolute',
                 left: `calc(${c.x}% - ${CARD_W / 2}px)`,
@@ -213,13 +231,13 @@ export function CardShuffle({ games, onWinner }: Props) {
                 transform: `translateX(${c.offsetX}px) translateY(${c.offsetY - lift}px) rotate(${c.rotation}deg)`,
                 transformOrigin: 'bottom center',
                 transition: posTrans,
-                cursor: phase === 'facedown' && pickedIdx === null ? 'pointer' : 'default',
+                cursor: phase === 'facedown' || phase === 'picked' ? 'pointer' : 'default',
                 zIndex: c.zIndex,
                 borderRadius: 8,
                 overflow: 'hidden',
                 boxShadow: glowing
                   ? '0 0 28px 6px rgba(139,92,246,0.65), 0 8px 24px rgba(0,0,0,0.7)'
-                  : isHovOnly
+                  : isHovered
                     ? '0 0 14px 3px rgba(139,92,246,0.25), 0 4px 16px rgba(0,0,0,0.5)'
                     : '0 4px 12px rgba(0,0,0,0.45)',
                 border: glowing ? '1.5px solid #a78bfa' : '1px solid rgba(255,255,255,0.08)',
@@ -229,8 +247,8 @@ export function CardShuffle({ games, onWinner }: Props) {
               <div style={{
                 width: '100%', height: '100%', position: 'relative',
                 transformStyle: 'preserve-3d',
-                transform: c.faceUp ? 'rotateY(0deg)' : 'rotateY(180deg)',
-                transition: 'transform 0.4s ease',
+                transform: isFrontVisible ? 'rotateY(0deg)' : 'rotateY(180deg)',
+                transition: flipTransition,
               }}>
                 {/* Front face */}
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden' }}>

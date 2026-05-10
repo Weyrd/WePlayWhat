@@ -1,6 +1,6 @@
 
 export const BadgeType = {
-  COOP: 'coop',
+  DUO: 'duo',
   OWNED: 'owned',
   NOT_OWNED: 'notOwned',
   REMOTE_PLAY: 'remotePlay',

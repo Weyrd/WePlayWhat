@@ -89,7 +89,7 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
             <Badge type={BadgeType.NOT_OWNED} />
           )}
           {game.isRemotePlay && <Badge type={BadgeType.REMOTE_PLAY} />}
-          {game.isCoop && <Badge type={BadgeType.COOP} />}
+          {game.isDuo && <Badge type={BadgeType.DUO} />}
           {game.owned && gameIsFree && <Badge type={BadgeType.FREE} />}
         </div>
       </div>

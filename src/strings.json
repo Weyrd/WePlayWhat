@@ -2,8 +2,8 @@
   "appTitle": "WePlayWhat?",
   "ui": {
     "searchPlaceholder": "Search games...",
-    "filterCoopTitle": "Filter Co-op games",
-    "coopOnly": "Co-op Only",
+    "filterDuoTitle": "Filter Duo games",
+    "duoOnly": "Duo Only",
     "onlyDiscounted": "Only Discounted",
     "ownedGames": "Owned Games",
     "notOwnedGames": "Not Owned Games",
@@ -17,6 +17,7 @@
   },
   "tags": {
     "title": "Tags",
+    "genresTitle": "Genres",
     "info": "click tag to cycle state",
     "legend": {
       "neutral": "neutral",
@@ -55,6 +56,18 @@
       "statusSpread": "Cards face up · Press shuffle to begin",
       "statusFaceDown": "Pick the highlighted card, or choose another"
     },
+    "resultPanel": {
+      "stats": {
+        "dlc": "DLC",
+        "achievementsShort": "Achiev.",
+        "metacritic": "Metacritic"
+      },
+      "links": {
+        "steam": "Steam",
+        "dlCompare": "DLCompare",
+        "instantGamingShort": "IG"
+      }
+    },
     "settings": {
       "mode": "Mode",
       "pool": "Pool",
@@ -66,7 +79,7 @@
   "badges": {
     "owned": "Owned",
     "notOwned": "Not Owned",
-    "coop": "Co-op",
+    "duo": "Duo",
     "remotePlay": "Remote Play",
     "free": "Free"
   },

@@ -1,8 +1,5 @@
 # TODO
-- filter on categorie (adventure etc)
-- shuffled card, after the result/clicked on the winning card, we can look at the other cards, hovering them will flip them
-- sticky header (searchbar/top and tag filter bar) the bar with explanation neutral, inlcude, exclude etrc is hidden when scrolling down, but appears when scrolling up or at the top of the page
-- some text still hardcoded in resultpanel
+
 
 # WePlayWhat (WPW)
 
@@ -62,7 +59,7 @@ Open the URL shown by Vite (usually `http://localhost:5173`).
 ```json
 [
   { "id": 238460, "name": "BattleBlock Theater", "owned": true },
-  { "id": 1123450, "name": "Chicory: A Colorful Tale", "owned": true, "coop": true }
+  { "id": 1123450, "name": "Chicory: A Colorful Tale", "owned": true, "duo": true }
 ]
 ```
 
@@ -71,7 +68,7 @@ Fields:
 - `id` (number): Steam app id
 - `name` (string): game title
 - `owned` (boolean): owned status
-- `coop` (optional boolean): forces co-op badge
+- `duo` (optional boolean): forces duo badge
 
 ## Notes
 

@@ -201,7 +201,7 @@ export const GameDetailModal: React.FC<GameDetailModalProps> = ({ game, onClose 
               <div className="flex items-center gap-1.5 ml-2">
                 {game.owned && <Badge type={BadgeType.OWNED} />}
                 {game.isRemotePlay && <Badge type={BadgeType.REMOTE_PLAY} />}
-                {game.isCoop && <Badge type={BadgeType.COOP} />}
+                {game.isDuo && <Badge type={BadgeType.DUO} />}
                 {gameIsFree && <Badge type={BadgeType.FREE} />}
               </div>
             </div>

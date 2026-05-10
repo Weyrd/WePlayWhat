@@ -8,9 +8,9 @@ interface BadgeProps {
 
 export const Badge: React.FC<BadgeProps> = ({ type }) => {
   const badgeConfig = {
-    [BadgeType.COOP]: {
+    [BadgeType.DUO]: {
       className: "text-orange-400 bg-orange-400/10 border border-orange-400/25",
-      label: strings.badges.coop
+      label: strings.badges.duo
     },
     [BadgeType.OWNED]: {
       className: "text-green-400 bg-green-500/10 border border-green-500/25",

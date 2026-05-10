@@ -65,15 +65,15 @@ export function ResultPanel({ game, onPlayAgain, onClose }: Props) {
             >
               <div className="bg-[#080c12] py-2.5 text-center">
                 <div className="text-sm font-bold text-sky-300 leading-none">{dlcCount || '—'}</div>
-                <div className="text-[9px] text-gray-500 uppercase tracking-wider mt-1">DLC</div>
+                <div className="text-[9px] text-gray-500 uppercase tracking-wider mt-1">{strings.wheelModal.resultPanel.stats.dlc}</div>
               </div>
               <div className="bg-[#080c12] py-2.5 text-center">
                 <div className="text-sm font-bold text-purple-300 leading-none">{achievementsTotal || '—'}</div>
-                <div className="text-[9px] text-gray-500 uppercase tracking-wider mt-1">Achiev.</div>
+                <div className="text-[9px] text-gray-500 uppercase tracking-wider mt-1">{strings.wheelModal.resultPanel.stats.achievementsShort}</div>
               </div>
               <div className="bg-[#080c12] py-2.5 text-center">
                 <div className="text-sm font-bold text-emerald-400 leading-none">{metacriticScore ?? '—'}</div>
-                <div className="text-[9px] text-gray-500 uppercase tracking-wider mt-1">Metacritic</div>
+                <div className="text-[9px] text-gray-500 uppercase tracking-wider mt-1">{strings.wheelModal.resultPanel.stats.metacritic}</div>
               </div>
             </div>
 
@@ -148,7 +148,7 @@ export function ResultPanel({ game, onPlayAgain, onClose }: Props) {
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2980d4" strokeWidth={2}>
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3" />
                   </svg>
-                  Steam
+                  {strings.wheelModal.resultPanel.links.steam}
                 </a>
 
                 {!game.owned && (
@@ -164,7 +164,7 @@ export function ResultPanel({ game, onPlayAgain, onClose }: Props) {
                         <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                         <line x1="7" y1="7" x2="7.01" y2="7" />
                       </svg>
-                      DLCompare
+                      {strings.wheelModal.resultPanel.links.dlCompare}
                     </a>
                     <a
                       href={game.instantGamingUrl}
@@ -176,7 +176,7 @@ export function ResultPanel({ game, onPlayAgain, onClose }: Props) {
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#d44e12" strokeWidth={2}>
                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                       </svg>
-                      IG
+                      {strings.wheelModal.resultPanel.links.instantGamingShort}
                     </a>
                   </>
                 )}

@@ -28,7 +28,7 @@ export function useGames() {
           steamUrl: CONSTANTS.STEAM_STORE_PAGE(game.id),
           dlCompareUrl: CONSTANTS.DLCOMPARE_SEARCH(game.name),
           instantGamingUrl: CONSTANTS.INSTANT_GAMING_SEARCH(game.name),
-          isCoop: game.coop || false
+          isDuo: game.duo || false
         };
 
         const isTargetScope = scope === TableScope.OWNED ? game.owned : scope === TableScope.NOT_OWNED ? !game.owned : false;

@@ -1,10 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import type { Game } from './models/Game';
 import { FilterTag } from './models/FilterTag';
 import { Header } from './components/Header';
 import { GameGrid } from './components/GameGrid';
 import { GameDetailModal } from './components/GameDetailModal';
 import { TagFilterBar } from './components/TagFilterBar';
+import { GenreFilterBar } from './components/GenreFilterBar';
 import { WheelModal } from './components/WheelModal';
 import { useGames, TableScope } from './hooks/useGames';
 import { Toaster } from 'react-hot-toast';
@@ -25,14 +26,17 @@ function App() {
   const [search, setSearch] = useState('');
   const [onlyDiscounted, setOnlyDiscounted] = useState(false);
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
+  const [showLegend, setShowLegend] = useState(true);
+  const lastScrollYRef = useRef(0);
 
   // --- tag filters ---
   const [tagFilters, setTagFilters] = useState<TagFilter[]>([
     { label: FilterTag.OWNED, state: 'ignore' },
     { label: FilterTag.REMOTE_PLAY, state: 'ignore' },
-    { label: FilterTag.COOP, state: 'ignore' },
+    { label: FilterTag.DUO, state: 'ignore' },
     { label: FilterTag.FREE, state: 'ignore' },
   ]);
+  const [genreStates, setGenreStates] = useState<Record<string, TagState>>({});
 
   const cycleTagState = (label: string) =>
     setTagFilters(prev =>
@@ -47,6 +51,18 @@ function App() {
         return { ...t, state: next[t.state] };
       })
     );
+
+  const cycleGenreState = (label: string) =>
+    setGenreStates(prev => {
+      const next: Record<TagState, TagState> = {
+        ignore: 'include',
+        include: 'exclude',
+        exclude: 'only',
+        only: 'ignore',
+      };
+      const current = prev[label] ?? 'ignore';
+      return { ...prev, [label]: next[current] };
+    });
 
   // --- wheel ---
   const [wheelMode, setWheelMode] = useState<WheelMode>('idle');
@@ -106,13 +122,35 @@ function App() {
 
   const selectedGame = games.find(g => g.id === selectedGameId) || null;
 
+  const genreLabels = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          games.flatMap(game =>
+            (game.genres ?? [])
+              .map(genre => genre.description?.trim())
+              .filter((genre): genre is string => Boolean(genre))
+          )
+        )
+      ).sort((a, b) => a.localeCompare(b)),
+    [games]
+  );
+
+  const genreFilters = useMemo<TagFilter[]>(
+    () => genreLabels.map(label => ({ label, state: genreStates[label] ?? 'ignore' })),
+    [genreLabels, genreStates]
+  );
+
   const filteredGames = useMemo(() => {
-    const includes = tagFilters.filter(t => t.state === 'include');
-    const excludes = tagFilters.filter(t => t.state === 'exclude');
-    const onlys    = tagFilters.filter(t => t.state === 'only');
+    const tagIncludes = tagFilters.filter(t => t.state === 'include');
+    const tagExcludes = tagFilters.filter(t => t.state === 'exclude');
+    const tagOnlys = tagFilters.filter(t => t.state === 'only');
+    const genreIncludes = genreFilters.filter(g => g.state === 'include');
+    const genreExcludes = genreFilters.filter(g => g.state === 'exclude');
+    const genreOnlys = genreFilters.filter(g => g.state === 'only');
 
     const hasTag = (game: Game, label: string): boolean => {
-      if (label === FilterTag.COOP) return game.isCoop ?? false;
+      if (label === FilterTag.DUO) return game.isDuo ?? false;
       if (label === FilterTag.REMOTE_PLAY) return game.isRemotePlay ?? false;
       if (label === FilterTag.OWNED) return game.owned ?? false;
       if (label === FilterTag.FREE) return isGameFree(game);
@@ -121,17 +159,25 @@ function App() {
       return game.categories?.some(c => c.description.toLowerCase().includes(l)) ?? false;
     };
 
+    const hasGenre = (game: Game, genreLabel: string): boolean => {
+      const normalizedLabel = genreLabel.toLowerCase();
+      return game.genres?.some(genre => genre.description.toLowerCase() === normalizedLabel) ?? false;
+    };
+
     return games
       .filter(g => (g.name || '').toLowerCase().includes(search.toLowerCase()))
       .filter(g => !onlyDiscounted || (g.price_overview?.discount_percent || 0) > 0)
       .filter(g => {
-        if (onlys.length > 0 && !onlys.some(t => hasTag(g, t.label))) return false;
-        if (includes.some(t => !hasTag(g, t.label))) return false;
-        if (excludes.some(t => hasTag(g, t.label))) return false;
+        if (tagOnlys.length > 0 && !tagOnlys.every(t => hasTag(g, t.label))) return false;
+        if (tagIncludes.some(t => !hasTag(g, t.label))) return false;
+        if (tagExcludes.some(t => hasTag(g, t.label))) return false;
+        if (genreOnlys.length > 0 && !genreOnlys.every(genre => hasGenre(g, genre.label))) return false;
+        if (genreIncludes.some(genre => !hasGenre(g, genre.label))) return false;
+        if (genreExcludes.some(genre => hasGenre(g, genre.label))) return false;
         return true;
       })
       .sort((a, b) => (a.name || '').localeCompare(b.name || ''));
-  }, [games, search, onlyDiscounted, tagFilters]);
+  }, [games, search, onlyDiscounted, tagFilters, genreFilters]);
 
   const ownedGames = filteredGames.filter(g => g.owned);
   const notOwnedGames = filteredGames.filter(g => !g.owned);
@@ -139,20 +185,48 @@ function App() {
   const lastFetchedNum = Math.max(...games.map(g => g.lastFetched || 0));
   const lastFetchedStr = lastFetchedNum > 0 ? new Date(lastFetchedNum).toLocaleString() : '';
 
+  useEffect(() => {
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const lastY = lastScrollYRef.current;
+
+      if (currentY <= 8) {
+        setShowLegend(true);
+      } else if (currentY > lastY) {
+        setShowLegend(false);
+      } else if (currentY < lastY) {
+        setShowLegend(true);
+      }
+
+      lastScrollYRef.current = currentY;
+    };
+
+    lastScrollYRef.current = window.scrollY;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-900 text-white pb-12 w-full">
       <Toaster position="bottom-right" reverseOrder={false} />
-      <Header
-        search={search}
-        setSearch={setSearch}
-        onlyDiscounted={onlyDiscounted}
-        setOnlyDiscounted={setOnlyDiscounted}
-        handleWheelBtn={handleWheelBtn}
-        wheelBtnClass={wheelBtnClass}
-        wheelBtnLabel={wheelBtnLabel()}
-      />
+      <div className="sticky top-0 z-40">
+        <Header
+          search={search}
+          setSearch={setSearch}
+          onlyDiscounted={onlyDiscounted}
+          setOnlyDiscounted={setOnlyDiscounted}
+          handleWheelBtn={handleWheelBtn}
+          wheelBtnClass={wheelBtnClass}
+          wheelBtnLabel={wheelBtnLabel()}
+        />
 
-      <TagFilterBar tags={tagFilters} onCycle={cycleTagState} />
+        <TagFilterBar
+          tags={tagFilters}
+          onCycle={cycleTagState}
+          showLegend={showLegend}
+        />
+        <GenreFilterBar genres={genreFilters} onCycle={cycleGenreState} />
+      </div>
 
       <main className="max-w-7xl mx-auto px-4 mt-8 space-y-12">
         {ownedGames.length > 0 && (
