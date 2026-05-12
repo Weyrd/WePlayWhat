@@ -225,6 +225,19 @@ function App() {
     refreshingIds.forEach(id => ids.add(id));
     return ids;
   }, [staleGameIds, refreshingIds]);
+  const freshIds = useMemo(() => {
+    const ids = new Set<number>();
+    for (const game of games) {
+      if (game.isNonSteam) continue;
+      if (game.isCached) continue;
+      if (staleGameIds.has(game.id)) continue;
+      if (refreshingIds.has(game.id)) continue;
+      const lastFetched = normalizeLastFetched(game.lastFetched);
+      if (!lastFetched) continue;
+      ids.add(game.id);
+    }
+    return ids;
+  }, [games, staleGameIds, refreshingIds]);
   const lastFetchedNum = Math.max(
     0,
     ...games.map(g => normalizeLastFetched(g.lastFetched) ?? 0)
@@ -318,6 +331,7 @@ function App() {
             wheelSelected={wheelSelected}
             toggleWheelSelect={toggleWheelSelect}
             attentionIds={attentionIds}
+            freshIds={freshIds}
           />
         )}
 
@@ -333,6 +347,7 @@ function App() {
             wheelSelected={wheelSelected}
             toggleWheelSelect={toggleWheelSelect}
             attentionIds={attentionIds}
+            freshIds={freshIds}
           />
         )}
 
@@ -348,6 +363,7 @@ function App() {
             wheelSelected={wheelSelected}
             toggleWheelSelect={toggleWheelSelect}
             attentionIds={attentionIds}
+            freshIds={freshIds}
           />
         )}
 

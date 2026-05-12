@@ -11,6 +11,7 @@ interface CardProps {
   isWheelPicking?: boolean;
   isWheelSelected?: boolean;
   showAttention?: boolean;
+  showFresh?: boolean;
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -19,6 +20,7 @@ export const Card: React.FC<CardProps> = ({
   isWheelPicking = false,
   isWheelSelected = false,
   showAttention = false,
+  showFresh = false,
 }) => {
   const gameIsFree = isGameFree(game);
   const ringClass = isWheelSelected
@@ -26,12 +28,20 @@ export const Card: React.FC<CardProps> = ({
     : isWheelPicking
     ? 'ring-1 ring-purple-500/30 cursor-copy'
     : '';
+  const cornerAccentClass = showAttention
+    ? 'bg-[radial-gradient(circle_at_bottom_left,rgba(248,113,113,0.22),transparent_70%)]'
+    : showFresh
+    ? 'bg-[radial-gradient(circle_at_bottom_left,rgba(52,211,153,0.22),transparent_70%)]'
+    : '';
 
   return (
     <div
       className={`bg-[#161b27] border border-[#2a2d3a] rounded-lg overflow-hidden cursor-pointer hover:border-violet-600/50 transition-colors relative ${ringClass}`}
       onClick={() => onClick(game)}
     >
+      {cornerAccentClass && (
+        <span className={`absolute bottom-0 left-0 h-9 w-9 pointer-events-none ${cornerAccentClass}`} />
+      )}
       {isWheelPicking && (
         <div className={`absolute top-2 left-2 w-5 h-5 rounded-lg flex items-center justify-center border transition-colors z-10 ${
           isWheelSelected
@@ -44,9 +54,6 @@ export const Card: React.FC<CardProps> = ({
             </svg>
           )}
         </div>
-      )}
-      {showAttention && (
-        <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-[#161b27] z-10" />
       )}
       {game.header_image ? (
         <img 

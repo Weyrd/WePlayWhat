@@ -16,6 +16,7 @@ interface GameGridProps {
   wheelSelected: Set<number>;
   toggleWheelSelect: (game: Game) => void;
   attentionIds?: Set<number>;
+  freshIds?: Set<number>;
 }
 
 export const GameGrid: React.FC<GameGridProps> = ({
@@ -29,6 +30,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
   wheelSelected,
   toggleWheelSelect,
   attentionIds,
+  freshIds,
 }) => {
   return (
     <section>
@@ -56,6 +58,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
             isWheelPicking={wheelMode === 'picking'}
             isWheelSelected={wheelSelected.has(game.id)}
             showAttention={attentionIds?.has(game.id)}
+            showFresh={freshIds?.has(game.id)}
           />
         ))}
       </div>

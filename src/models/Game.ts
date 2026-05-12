@@ -30,4 +30,5 @@ export type Game = LocalGame & Partial<SteamAppDetailsData> & {
   externalUrl?: string;
   isRemotePlay?: boolean;
   lastFetched?: number;
+  isCached?: boolean;
 };

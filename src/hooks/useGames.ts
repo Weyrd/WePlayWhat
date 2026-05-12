@@ -64,7 +64,8 @@ export function useGames() {
           isMeh: game.meh || false,
           isGreatPotential: game.gp || false,
           isNonSteam,
-          externalUrl
+          externalUrl,
+          isCached: false
         };
 
         const isTargetScope = scope === TableScope.OWNED ? game.owned : scope === TableScope.NOT_OWNED ? !game.owned : false;
@@ -79,7 +80,7 @@ export function useGames() {
             const parsed = JSON.parse(cached);
             
             const dataToUse = parsed.data || parsed;
-            return { ...base, ...dataToUse };
+            return { ...base, ...dataToUse, isCached: true };
           } catch {
              // ignore parse error 
           }
@@ -103,7 +104,7 @@ export function useGames() {
       for (const game of toFetch) {
         updateRefreshingIds(game.id, true);
         const fetched = await fetchSteamData(game);
-        setGames(prev => prev.map(g => (g.id === game.id ? fetched : g)));
+        setGames(prev => prev.map(g => (g.id === game.id ? { ...fetched, isCached: false } : g)));
         updatedCount++;
         updateRefreshingIds(game.id, false);
         await new Promise(resolve => setTimeout(resolve, 300));
@@ -125,7 +126,7 @@ export function useGames() {
     updateRefreshingIds(game.id, true);
     try {
       const fetched = await fetchSteamData(game);
-      setGames(prev => prev.map(g => (g.id === game.id ? fetched : g)));
+      setGames(prev => prev.map(g => (g.id === game.id ? { ...fetched, isCached: false } : g)));
     } finally {
       updateRefreshingIds(game.id, false);
       updateRefreshing(-1);
