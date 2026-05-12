@@ -4,6 +4,7 @@ import { FilterTag } from './models/FilterTag';
 import { Header } from './components/Header';
 import { GameGrid } from './components/GameGrid';
 import { GameDetailModal } from './components/GameDetailModal';
+import { NonSteamGameModal } from './components/NonSteamGameModal.tsx';
 import { TagFilterBar } from './components/TagFilterBar';
 import { GenreFilterBar } from './components/GenreFilterBar';
 import { WheelModal } from './components/WheelModal';
@@ -37,10 +38,13 @@ function App() {
   // --- tag filters ---
   const [tagFilters, setTagFilters] = useState<TagFilter[]>([
     { label: FilterTag.OWNED, state: 'ignore' },
+    { label: FilterTag.STEAM_GAME, state: 'ignore' },
     { label: FilterTag.REMOTE_PLAY, state: 'ignore' },
     { label: FilterTag.DUO, state: 'ignore' },
     { label: FilterTag.ASIA_APPROVED, state: 'ignore' },
     { label: FilterTag.FACTORY, state: 'ignore' },
+    { label: FilterTag.TBR, state: 'ignore' },
+    { label: FilterTag.MEH, state: 'ignore' },
     { label: FilterTag.FREE, state: 'ignore' },
   ]);
   const [genreStates, setGenreStates] = useState<Record<string, TagState>>({});
@@ -160,8 +164,11 @@ function App() {
       if (label === FilterTag.DUO) return game.isDuo ?? false;
       if (label === FilterTag.REMOTE_PLAY) return game.isRemotePlay ?? false;
       if (label === FilterTag.OWNED) return game.owned ?? false;
+      if (label === FilterTag.STEAM_GAME) return !game.isNonSteam;
       if (label === FilterTag.ASIA_APPROVED) return game.isAsiaApproved ?? false;
       if (label === FilterTag.FACTORY) return game.isFactory ?? false;
+      if (label === FilterTag.TBR) return game.isToBeReviewed ?? false;
+      if (label === FilterTag.MEH) return game.isMeh ?? false;
       if (label === FilterTag.FREE) return isGameFree(game);
 
       const l = label.toLowerCase();
@@ -188,8 +195,10 @@ function App() {
       .sort((a, b) => (a.name || '').localeCompare(b.name || ''));
   }, [games, search, onlyDiscounted, tagFilters, genreFilters]);
 
-  const ownedGames = filteredGames.filter(g => g.owned);
-  const notOwnedGames = filteredGames.filter(g => !g.owned);
+  const nonSteamGames = filteredGames.filter(g => g.isNonSteam);
+  const steamGames = filteredGames.filter(g => !g.isNonSteam);
+  const ownedGames = steamGames.filter(g => g.owned);
+  const notOwnedGames = steamGames.filter(g => !g.owned);
 
   const lastFetchedNum = Math.max(...games.map(g => g.lastFetched || 0));
   const lastFetchedStr = lastFetchedNum > 0 ? new Date(lastFetchedNum).toLocaleString() : '';
@@ -274,6 +283,20 @@ function App() {
           />
         )}
 
+        {nonSteamGames.length > 0 && (
+          <GameGrid
+            title={strings.ui.nonSteamGames}
+            scope={TableScope.OWNED}
+            lastFetchedStr=""
+            games={nonSteamGames}
+            onClickCard={handleOpenModal}
+            loadGamesData={loadGamesData}
+            wheelMode={wheelMode}
+            wheelSelected={wheelSelected}
+            toggleWheelSelect={toggleWheelSelect}
+          />
+        )}
+
         {filteredGames.length === 0 && (
           <div className="text-center text-gray-400 py-12">
             {strings.ui.noGamesFound}
@@ -282,11 +305,19 @@ function App() {
       </main>
 
       {selectedGame && wheelMode === 'idle' && (
-        <GameDetailModal
-          key={selectedGame.id} 
-          game={selectedGame} 
-          onClose={() => setSelectedGameId(null)} 
-        />
+        selectedGame.isNonSteam ? (
+          <NonSteamGameModal
+            key={selectedGame.id}
+            game={selectedGame}
+            onClose={() => setSelectedGameId(null)}
+          />
+        ) : (
+          <GameDetailModal
+            key={selectedGame.id} 
+            game={selectedGame} 
+            onClose={() => setSelectedGameId(null)} 
+          />
+        )
       )}
 
       {wheelMode === 'result' && (

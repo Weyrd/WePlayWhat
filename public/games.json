@@ -2,7 +2,7 @@
   { "id": 238460, "name": "BattleBlock Theater", "owned": true },
   { "id": 1123450, "name": "Chicory: A Colorful Tale", "owned": true, "duo": true, "asia_approved": true },
   { "id": 204360, "name": "Castle Crashers", "owned": true },
-  { "id": 572890, "name": "Pikuniku", "owned": true },
+  { "id": 572890, "name": "Pikuniku", "owned": true, "asia_approved": true },
   { "id": 35700, "name": "Trine Enchanted Edition", "owned": true, "asia_approved": true },
   {
     "id": 35720,
@@ -42,7 +42,7 @@
   { "id": 1509960, "name": "PICO PARK", "owned": true },
   { "id": 374040, "name": "Portal Knights", "owned": true },
   { "id": 1599660, "name": "Sackboy: A Big Adventure", "owned": true, "asia_approved": true },
-  { "id": 996770, "name": "Moving Out", "owned": true },
+  { "id": 996770, "name": "Moving Out", "owned": true, "asia_approved":true },
   { "id": 880940, "name": "Pummel Party", "owned": true },
   {
     "id": 413150,
@@ -53,8 +53,19 @@
   { "id": 326460, "name": "ShellShock Live", "owned": true },
   { "id": 1000030, "name": "Cook, Serve, Delicious! 3?!", "owned": true },
   { "id": 2445490, "name": "Up To Par", "owned": true },
-  { "id": 865360, "name": "We Were Here Together", "owned": true, "duo": true },
-  { "id": 251470, "name": "TowerFall Ascension", "owned": true },
+  {
+    "id": 865360,
+    "name": "We Were Here Together",
+    "owned": true,
+    "duo": true,
+    "asia_approved": true
+  },
+  {
+    "id": 251470,
+    "name": "TowerFall Ascension",
+    "owned": true,
+    "asia_approved": true
+  },
   { "id": 1169040, "name": "Necesse", "owned": false },
   { "id": 3892270, "name": "Gamble With Your Friends", "owned": false },
   { "id": 2904000, "name": "The Spell Brigade", "owned": false },
@@ -75,12 +86,23 @@
   { "id": 1284190, "name": "The Planet Crafter", "owned": false },
   { "id": 632360, "name": "Risk of Rain 2", "owned": false },
   { "id": 477160, "name": "Human: Fall Flat", "owned": false },
-  { "id": 527230, "name": "For The King", "owned": false },
+  {
+    "id": 527230,
+    "name": "For The King",
+    "owned": false,
+    "asia_approved": true
+  },
   { "id": 211820, "name": "Starbound", "owned": false },
   { "id": 2787320, "name": "Revenge of the Savage Planet", "owned": false },
-  { "id": 3124540, "name": "Far Far West", "owned": false },
+  { "id": 3124540, "name": "Far Far West", "owned": false, "asia_approved":true },
   { "id": 1450900, "name": "Desynced", "owned": false, "factory": true },
-  { "id": 431240, "name": "Golf With Your Friends", "owned": true },
+  {
+    "id": 431240,
+    "name": "Golf With Your Friends",
+    "owned": true,
+    "asia_approved": true,
+    "meh": true
+  },
   { "id": 2239140, "name": "Boti: Byteland Overclocked", "owned": true },
   { "id": 962130, "name": "Grounded", "owned": true, "asia_approved": true },
   { "id": 905340, "name": "Heave Ho", "owned": true, "asia_approved": true },
@@ -88,14 +110,24 @@
   { "id": 526870, "name": "Satisfactory", "owned": true, "factory": true },
   { "id": 2868840, "name": "Slay the Spire 2", "owned": true, "asia_approved": true },
   { "id": 2211170, "name": "Unrailed 2", "owned": true, "duo": true },
-  { "id": 252110, "name": "Lovers in a Dangerous Spacetime", "owned": false },
+  {
+    "id": 252110,
+    "name": "Lovers in a Dangerous Spacetime",
+    "owned": false,
+    "asia_approved": true
+  },
   { "id": 105600, "name": "Terraria", "owned": true, "asia_approved": true },
   { "id": 445980, "name": "Wizard of Legend", "owned": true },
   { "id": 207140, "name": "SpeedRunners", "owned": false },
-  { "id": 4069520, "name": "Super Battle Golf", "owned": false },
+  {
+    "id": 4069520,
+    "name": "Super Battle Golf",
+    "owned": false,
+    "asia_approved": true
+  },
   { "id": 548430, "name": "Deep Rock Galactic", "owned": false },
   { "id": 2794590, "name": "Scam Line", "owned": false },
-  { "id": 3097560, "name": "Liar's Bar", "owned": false },
+  { "id": 3097560, "name": "Liar's Bar", "owned": false, "asia_approved": true, "meh": true },
   { "id": 1435790, "name": "Escape Simulator", "owned": false },
   { "id": 4331610, "name": "Dome Keeper The Lost Keepers", "owned": false },
   { "id": 2780980, "name": "LOCKDOWN Protocol", "owned": false },
@@ -107,16 +139,62 @@
     "owned": false,
     "asia_approved": true
   },
-  { "id": 837470, "name": "Untitled Goose Game", "owned": false },
-  { "id": 972660, "name": "Spiritfarer: Farewell Edition", "owned": false },
-  { "id": 2325290, "name": "Sky: Children of the Light", "owned": false },
-  { "id": 1225570, "name": "Unravel Two", "owned": false, "duo": true },
+  {
+    "id": 837470,
+    "name": "Untitled Goose Game",
+    "owned": false,
+    "asia_approved": true,
+    "duo": true
+  },
+  {
+    "id": 972660,
+    "name": "Spiritfarer: Farewell Edition",
+    "owned": false,
+    "asia_approved": true
+  },
+  {
+    "id": 2325290,
+    "name": "Sky: Children of the Light",
+    "owned": false,
+    "asia_approved": true
+  },
+  {
+    "id": 1225570,
+    "name": "Unravel Two",
+    "owned": false,
+    "duo": true,
+    "asia_approved": true
+  },
   { "id": 1313140, "name": "Cult of the Lamb", "owned": false, "duo": true },
   { "id": 323850, "name": "Move or Die", "owned": false },
   { "id": 3003460, "name": "Bang Bang Barrage", "owned": false },
-  { "id": 1242980, "name": "KeyWe", "owned": false, "duo": true },
+  { "id": 1242980, "name": "KeyWe", "owned": false, "duo": true, "asia_approved": true },
+  { "id": 1004490, "name": "Tools Up!", "owned": false, "asia_approved": true },
   { "id": 1614550, "name": "Astro Colony", "owned": false, "factory": true },
   { "id": 1127400, "name": "Mindustry", "owned": false, "factory": true },
-  { "id": 1229490, "name": "The Escapists 2", "owned": false },
-  { "id": 1062090, "name": "Timberborn", "owned": false, "duo": true }
+  { "id": 641990, "name": "The Escapists 2", "owned": true, "asia_approved": true },
+  { "id": 1062090, "name": "Timberborn", "owned": false, "duo": true, "factory": true },
+  { "id": 1260320, "name": "Party Animals", "owned": false, "asia_approved": true },
+  { "id": 3498580, "name": "Pao Pao", "owned": false, "asia_approved": true },
+  { "id": 638230, "name": "Journey", "owned": false, "asia_approved": true },
+  { "id": 1203620, "name": "Enshrouded", "owned": false },
+  { "id": 983870, "name": "FOUNDRY", "owned": true, "factory": true },
+  { "id": 286160, "name": "Tabletop Simulator", "owned": true, "asia_approved": true },
+  { "id": 335240, "name": "Transformice", "owned": true },
+  { "id": 1801110, "name": "BOKURA", "owned": true, "duo": true, "asia_approved": true },
+  { "id": 1071870, "name": "Biped", "owned": true, "duo": true, "asia_approved": true },
+  { "id": 1641700, "name": "Moving Out 2", "owned": false, "asia_approved": true },
+  { "id": 3744080, "name": "Mining Merchant", "owned": false, "to_be_reviewed": true },
+  { "id": 1969370, "name": "LEGO Party", "owned": false, "asia_approved": true, "meh": true },
+  { "id": 1538550, "name": "LEGO Voayager", "owned": false, "duo": true, "asia_approved": true, "meh": true },
+  { "id": 2999030, "name": "Exploding Kittens 2", "owned": false, "asia_approved": true },
+  { "id": 1975580, "name": "Wild Woods", "owned": false, "meh": true },
+  { "id": 1568590, "name": "Goose Goose Duck", "owned": false, "to_be_reviewed": true },
+  { "id": 2408820, "name": "Luma Island", "owned": false, "to_be_reviewed": true },
+  { "id": 322330, "name": "Don't Starve Together", "owned": false, "to_be_reviewed": true },
+  { "id": 2686630, "name": "Voyagers of Nera", "owned": false, "asia_approved": true },
+  { "id": -1001, "name": "Neverness to Everness", "owned": true, "asia_approved": true, "free": true, "non_steam": true, "external_url": "https://nte.perfectworld.com/en/", "image_url": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA229gK5.img" },
+  { "id": -1002, "name": "Valorant", "owned": true, "asia_approved": true, "free": true, "non_steam": true, "external_url": "https://playvalorant.com/", "image_url": "https://anthonytommaso.me/images/VALlogo.png" },
+  { "id": -1003, "name": "Lego Fortnite Odyssey", "meh": true, "owned": true, "free": true, "non_steam": true, "external_url": "https://www.fortnite.com/@epic/lego-fortnite-odyssey", "image_url": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70070000020305/f45eb8efa6663f6dd5c487f87deda1c3eaab37397d08d016183afc90389bc401" }
+
 ]

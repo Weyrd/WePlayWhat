@@ -1,6 +1,7 @@
 import type { Game } from '../models/Game';
 
 export function isGameFree(game: Partial<Game>): boolean {
+  if (game.free === true) return true;
   if (game.is_free === true) return true;
 
   const finalPrice = game.price_overview?.final;

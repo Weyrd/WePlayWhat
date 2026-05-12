@@ -38,11 +38,19 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
           )}
         </div>
       )}
-      <img 
-        src={game.header_image} 
-        alt={game.name} 
-        className="w-full h-32 object-cover bg-gray-700" 
-      />
+      {game.header_image ? (
+        <img 
+          src={game.header_image} 
+          alt={game.name} 
+          className="w-full h-32 object-cover bg-gray-700" 
+        />
+      ) : (
+        <div className="w-full h-32 bg-linear-to-br from-emerald-900/30 via-slate-900 to-slate-950 flex items-center justify-center">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-200/80">
+            {strings.ui.nonSteamLabel}
+          </span>
+        </div>
+      )}
 
       <div className="p-4">
         <h3 className="font-bold text-lg truncate mb-2">{game.name}</h3>
@@ -91,6 +99,8 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
           {game.isRemotePlay && <Badge type={BadgeType.REMOTE_PLAY} />}
           {game.isDuo && <Badge type={BadgeType.DUO} />}
           {game.isFactory && <Badge type={BadgeType.FACTORY} />}
+          {game.isToBeReviewed && <Badge type={BadgeType.TBR} />}
+          {game.isMeh && <Badge type={BadgeType.MEH} />}
           {game.owned && gameIsFree && <Badge type={BadgeType.FREE} />}
           {game.isAsiaApproved && <Badge type={BadgeType.ASIA_APPROVED} />}
         </div>

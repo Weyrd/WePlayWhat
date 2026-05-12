@@ -22,15 +22,22 @@ export function useGames() {
       const localGames: LocalGame[] = await res.json();
       
       const initialGames: Game[] = localGames.map(game => {
+        const isNonSteam = game.non_steam || false;
+        const externalUrl = game.external_url || '';
+        const nonSteamImage = game.image_url || '';
         const base: Game = {
           ...game,
-          header_image: CONSTANTS.STEAM_HEADER_IMAGE(game.id),
-          steamUrl: CONSTANTS.STEAM_STORE_PAGE(game.id),
-          dlCompareUrl: CONSTANTS.DLCOMPARE_SEARCH(game.name),
-          instantGamingUrl: CONSTANTS.INSTANT_GAMING_SEARCH(game.name),
+          header_image: isNonSteam ? (nonSteamImage || undefined) : CONSTANTS.STEAM_HEADER_IMAGE(game.id),
+          steamUrl: isNonSteam ? '' : CONSTANTS.STEAM_STORE_PAGE(game.id),
+          dlCompareUrl: isNonSteam ? '' : CONSTANTS.DLCOMPARE_SEARCH(game.name),
+          instantGamingUrl: isNonSteam ? '' : CONSTANTS.INSTANT_GAMING_SEARCH(game.name),
           isDuo: game.duo || false,
           isAsiaApproved: game.asia_approved || false,
-          isFactory: game.factory || false
+          isFactory: game.factory || false,
+          isToBeReviewed: game.to_be_reviewed || false,
+          isMeh: game.meh || false,
+          isNonSteam,
+          externalUrl
         };
 
         const isTargetScope = scope === TableScope.OWNED ? game.owned : scope === TableScope.NOT_OWNED ? !game.owned : false;
@@ -57,7 +64,7 @@ export function useGames() {
 
       const toFetch = initialGames.filter(g => {
         const isTargetScope = scope === TableScope.OWNED ? g.owned : scope === TableScope.NOT_OWNED ? !g.owned : false;
-        return isTargetScope || (!g.short_description && !g.lastFetched);
+        return !g.isNonSteam && (isTargetScope || (!g.short_description && !g.lastFetched));
       });
       
       if (toFetch.length > 0) {

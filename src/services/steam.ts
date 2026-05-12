@@ -23,20 +23,31 @@ const DLC_DETAILS_FILTERS = [
 export const fetchSteamData = async (
   game: LocalGame
 ): Promise<Game> => {
-  const steamUrl = CONSTANTS.STEAM_STORE_PAGE(game.id);
-  const dlCompareUrl = CONSTANTS.DLCOMPARE_SEARCH(game.name);
-  const instantGamingUrl = CONSTANTS.INSTANT_GAMING_SEARCH(game.name);
+  const isNonSteam = game.non_steam || false;
+  const externalUrl = game.external_url || '';
+  const nonSteamImage = game.image_url || '';
+  const steamUrl = isNonSteam ? '' : CONSTANTS.STEAM_STORE_PAGE(game.id);
+  const dlCompareUrl = isNonSteam ? '' : CONSTANTS.DLCOMPARE_SEARCH(game.name);
+  const instantGamingUrl = isNonSteam ? '' : CONSTANTS.INSTANT_GAMING_SEARCH(game.name);
 
   const baseFetched: Game = {
     ...game,
-    header_image: CONSTANTS.STEAM_HEADER_IMAGE(game.id),
+    header_image: isNonSteam ? (nonSteamImage || undefined) : CONSTANTS.STEAM_HEADER_IMAGE(game.id),
     steamUrl,
     dlCompareUrl,
     instantGamingUrl,
     isDuo: game.duo || false,
     isAsiaApproved: game.asia_approved || false,
     isFactory: game.factory || false,
+    isToBeReviewed: game.to_be_reviewed || false,
+    isMeh: game.meh || false,
+    isNonSteam,
+    externalUrl,
   };
+
+  if (isNonSteam) {
+    return baseFetched;
+  }
 
   try {
     const apiUrl = CONSTANTS.STEAM_API_APP_DETAILS(game.id, GAME_DETAILS_FILTERS);

@@ -7,6 +7,8 @@ export const BadgeType = {
   FREE: 'free',
   ASIA_APPROVED: 'asiaApproved',
   FACTORY: 'factory',
+  TBR: 'tbr',
+  MEH: 'meh',
 } as const;
 
 export type BadgeTypeAlias = typeof BadgeType[keyof typeof BadgeType];

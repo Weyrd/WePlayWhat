@@ -203,6 +203,8 @@ export const GameDetailModal: React.FC<GameDetailModalProps> = ({ game, onClose 
                 {game.isRemotePlay && <Badge type={BadgeType.REMOTE_PLAY} />}
                 {game.isDuo && <Badge type={BadgeType.DUO} />}
                 {game.isFactory && <Badge type={BadgeType.FACTORY} />}
+                {game.isToBeReviewed && <Badge type={BadgeType.TBR} />}
+                {game.isMeh && <Badge type={BadgeType.MEH} />}
                 {gameIsFree && <Badge type={BadgeType.FREE} />}
                 {game.isAsiaApproved && <Badge type={BadgeType.ASIA_APPROVED} />}
               </div>

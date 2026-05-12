@@ -7,6 +7,8 @@
     "onlyDiscounted": "Only Discounted",
     "ownedGames": "Owned Games",
     "notOwnedGames": "Not Owned Games",
+    "nonSteamGames": "Non-Steam Games",
+    "nonSteamLabel": "Non-Steam",
     "noGamesFound": "No games found matching your filters.",
     "wheel": {
       "idle": "Wheel decide",
@@ -83,7 +85,9 @@
     "remotePlay": "Remote Play",
     "free": "Free",
     "asiaApproved": "Asia 👍",
-    "factory": "Factory"
+    "factory": "Factory",
+    "tbr": "TBR",
+    "meh": "Meh"
   },
   "status": {
     "loading": "Loading...",
