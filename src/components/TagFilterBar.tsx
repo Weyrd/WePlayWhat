@@ -136,7 +136,9 @@ export function TagFilterBar({ tags, onCycle, legendReveal = 1 }: Props) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3 flex-wrap">
-        <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider">{strings.tags.title}</span>
+        <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider w-16 text-right shrink-0">
+          {strings.tags.title}
+        </span>
         <div className="flex gap-2 flex-wrap flex-1">
           {tags.map(tag => (
             <button

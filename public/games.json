@@ -178,7 +178,9 @@
   { "id": 3498580, "name": "Pao Pao", "owned": false, "asia_approved": true },
   { "id": 638230, "name": "Journey", "owned": false, "asia_approved": true },
   { "id": 1203620, "name": "Enshrouded", "owned": false },
+  { "id": 2622380, "name": "ELDEN RING NIGHTREIGN", "owned": false },
   { "id": 983870, "name": "FOUNDRY", "owned": true, "factory": true },
+  { "id": 268910, "name": "CupHead", "owned": true, "duo": true, "asia_approved": true },
   { "id": 286160, "name": "Tabletop Simulator", "owned": true, "asia_approved": true },
   { "id": 335240, "name": "Transformice", "owned": true },
   { "id": 1801110, "name": "BOKURA", "owned": true, "duo": true, "asia_approved": true },
@@ -193,8 +195,11 @@
   { "id": 2408820, "name": "Luma Island", "owned": false, "to_be_reviewed": true },
   { "id": 322330, "name": "Don't Starve Together", "owned": false, "to_be_reviewed": true },
   { "id": 2686630, "name": "Voyagers of Nera", "owned": false, "asia_approved": true },
+  { "id": 249550, "name": "NEStalgia", "owned": false},
   { "id": -1001, "name": "Neverness to Everness", "owned": true, "asia_approved": true, "free": true, "non_steam": true, "external_url": "https://nte.perfectworld.com/en/", "image_url": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA229gK5.img" },
   { "id": -1002, "name": "Valorant", "owned": true, "asia_approved": true, "free": true, "non_steam": true, "external_url": "https://playvalorant.com/", "image_url": "https://anthonytommaso.me/images/VALlogo.png" },
   { "id": -1003, "name": "Lego Fortnite Odyssey", "meh": true, "owned": true, "free": true, "non_steam": true, "external_url": "https://www.fortnite.com/@epic/lego-fortnite-odyssey", "image_url": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70070000020305/f45eb8efa6663f6dd5c487f87deda1c3eaab37397d08d016183afc90389bc401" },
-  { "id": -1004, "name": "Final Fantasy XIV", "owned": true, "asia_approved": true, "non_steam": true, "external_url": "https://fr.finalfantasyxiv.com/", "image_url": "https://mmos.com/wp-content/uploads/2017/04/final-fantasy-xiv-stormblood-yoshi-p-producers-letter-news-banner.jpg" }
+  { "id": -1004, "name": "Final Fantasy XIV", "owned": true, "asia_approved": true, "non_steam": true, "external_url": "https://fr.finalfantasyxiv.com/", "image_url": "https://mmos.com/wp-content/uploads/2017/04/final-fantasy-xiv-stormblood-yoshi-p-producers-letter-news-banner.jpg" },
+  { "id": -1005, "name": "SnipperClips", "owned": true, "to_be_reviewed": true, "non_steam": true, "external_url": "Snipperclips", "image_url": "https://images.launchbox-app.com/a9a439c9-1053-41ee-90c4-856fffe14d1e.jpg" },
+  { "id": -1006, "name": "Zelda Four Swords", "owned": true, "asia_approved": true, "non_steam": true, "external_url": "https://www.planetemu.net/rom/nintendo-game-boy-advance/legend-of-zelda-the-a-link-to-the-past-four-swords-europe-en-fr-de-es-it", "image_url": "https://www.nintendo.com/eu/media/images/10_share_images/games_15/gamecube_12/SI_GCN_TheLegendOfZeldaFourSwordsAdventures_image1600w.jpg" }
 ]

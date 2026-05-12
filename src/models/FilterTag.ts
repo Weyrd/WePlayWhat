@@ -1,13 +1,15 @@
+import strings from '../strings.json';
+
 export const FilterTag = {
-  DUO: 'Duo',
-  REMOTE_PLAY: 'Remote Play',
-  OWNED: 'Owned',
-  STEAM_GAME: 'Steam Game',
-  ASIA_APPROVED: 'Asia 👍',
-  FACTORY: 'Factory',
-  TBR: 'TBR',
-  MEH: 'Meh ~',
-  FREE: 'Free',
+  DUO: strings.badges.duo,
+  REMOTE_PLAY: strings.badges.remotePlay,
+  OWNED: strings.badges.owned,
+  STEAM_GAME: strings.tags.steamGame,
+  ASIA_APPROVED: strings.badges.asiaApproved,
+  FACTORY: strings.badges.factory,
+  TBR: strings.badges.tbr,
+  MEH: strings.badges.meh,
+  FREE: strings.badges.free,
 } as const;
 
 export type FilterTagAlias = typeof FilterTag[keyof typeof FilterTag];

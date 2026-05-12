@@ -40,7 +40,9 @@ export function GenreFilterBar({ genres, onCycle }: Props) {
   return (
     <div className="bg-gray-800 border-b border-gray-700">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3 flex-wrap">
-        <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider">{strings.tags.genresTitle}</span>
+        <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider w-16 text-right shrink-0">
+          {strings.tags.genresTitle}
+        </span>
         <div className="flex gap-2 flex-wrap flex-1">
           {genres.map(genre => (
             <button

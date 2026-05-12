@@ -20,6 +20,7 @@
   "tags": {
     "title": "Tags",
     "genresTitle": "Genres",
+    "steamGame": "Steam Game",
     "info": "click tag to cycle state",
     "legend": {
       "neutral": "neutral",
