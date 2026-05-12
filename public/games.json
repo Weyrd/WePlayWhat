@@ -94,7 +94,7 @@
   },
   { "id": 211820, "name": "Starbound", "owned": false },
   { "id": 2787320, "name": "Revenge of the Savage Planet", "owned": false },
-  { "id": 3124540, "name": "Far Far West", "owned": false, "asia_approved":true },
+  { "id": 3124540, "name": "Far Far West", "owned": false, "asia_approved":true, "meh":true },
   { "id": 1450900, "name": "Desynced", "owned": false, "factory": true },
   {
     "id": 431240,
