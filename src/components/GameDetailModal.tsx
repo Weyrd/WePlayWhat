@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Users, Columns, Share2, Gamepad2, Trophy, Cloud, SlidersHorizontal, User, SquareArrowOutUpRight, Tag, Zap, ExternalLink, ChevronLeft, ChevronRight, Award, type LucideIcon } from 'lucide-react';
+import { Users, Columns, Share2, Gamepad2, Trophy, Cloud, SlidersHorizontal, User, SquareArrowOutUpRight, Tag, Zap, ExternalLink, ChevronLeft, ChevronRight, Award, RefreshCw, type LucideIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 import type { Game } from '../models/Game';
 import type { SteamDlcDetailsData } from '../models/Steam';
@@ -12,6 +12,7 @@ import { isGameFree } from '../utils/gameFlags';
 interface GameDetailModalProps {
   game: Game;
   onClose: () => void;
+  onRefresh?: (game: Game) => void;
 }
 
 const ModalTab = {
@@ -34,14 +35,20 @@ const FEAT_MAP: Record<number, { label: string; icon: LucideIcon; highlight: boo
    1: { label: 'Multiplayer',      icon: Users,             highlight: false },
 };
 
-export const GameDetailModal: React.FC<GameDetailModalProps> = ({ game, onClose }) => {
+export const GameDetailModal: React.FC<GameDetailModalProps> = ({
+  game,
+  onClose,
+  onRefresh,
+}) => {
   const gameIsFree = isGameFree(game);
   const [imgIndex, setImgIndex] = useState(0);
   const [activeTab, setActiveTab] = useState<ModalTab>(ModalTab.OVERVIEW);
   const [dlcData, setDlcData] = useState<Record<string, SteamDlcDetailsData>>({});
   const [isDlcLoading, setIsDlcLoading] = useState(false);
+  const [isRefreshingGame, setIsRefreshingGame] = useState(false);
   const thumbRefs = useRef<(HTMLImageElement | null)[]>([]);
   const dlcFetchedRef = useRef(false);
+  const isMountedRef = useRef(true);
 
   const images: string[] = [];
   if (game.header_image) images.push(game.header_image);
@@ -89,6 +96,29 @@ export const GameDetailModal: React.FC<GameDetailModalProps> = ({ game, onClose 
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, [onClose]);
+
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+
+  const handleRefresh = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      if (!onRefresh || isRefreshingGame) return;
+      setIsRefreshingGame(true);
+      try {
+        await Promise.resolve(onRefresh(game));
+      } finally {
+        if (isMountedRef.current) {
+          setIsRefreshingGame(false);
+        }
+      }
+    },
+    [game, onRefresh, isRefreshingGame]
+  );
 
   const dlcCount = game.dlc?.length ?? 0;
   const achievementsTotal = game.achievements?.total ?? 0;
@@ -143,14 +173,29 @@ export const GameDetailModal: React.FC<GameDetailModalProps> = ({ game, onClose 
               </button>
             </div>
           )}
-          <button
-            className="absolute top-2 right-2 w-8 h-8 rounded-lg bg-[#161b27] border border-[#2a2d3a] flex items-center justify-center text-gray-400 hover:text-white transition-colors z-10"
-            onClick={(e) => { e.stopPropagation(); onClose(); }}
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
-              <path d="M18 6 6 18M6 6l12 12" />
-            </svg>
-          </button>
+          <div className="absolute top-2 right-2 flex items-center gap-2 z-10">
+            {onRefresh && (
+              <button
+                className={`relative w-8 h-8 rounded-lg bg-[#161b27] border border-[#2a2d3a] flex items-center justify-center text-gray-400 hover:text-white transition-colors ${isRefreshingGame ? 'opacity-70 cursor-not-allowed' : ''}`}
+                onClick={handleRefresh}
+                disabled={isRefreshingGame}
+                title="Refresh game data"
+                aria-label="Refresh game data"
+                aria-busy={isRefreshingGame}
+              >
+                <RefreshCw size={14} strokeWidth={2.5} className={isRefreshingGame ? 'animate-spin' : ''} />
+              </button>
+            )}
+            <button
+              className="w-8 h-8 rounded-lg bg-[#161b27] border border-[#2a2d3a] flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+              onClick={(e) => { e.stopPropagation(); onClose(); }}
+              aria-label="Close"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
           
           {/* Image indicator dots */}
           {images.length > 1 && (

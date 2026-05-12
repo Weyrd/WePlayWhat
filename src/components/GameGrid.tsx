@@ -15,6 +15,7 @@ interface GameGridProps {
   wheelMode: 'idle' | 'picking' | 'result';
   wheelSelected: Set<number>;
   toggleWheelSelect: (game: Game) => void;
+  attentionIds?: Set<number>;
 }
 
 export const GameGrid: React.FC<GameGridProps> = ({
@@ -27,6 +28,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
   wheelMode,
   wheelSelected,
   toggleWheelSelect,
+  attentionIds,
 }) => {
   return (
     <section>
@@ -53,6 +55,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
             onClick={wheelMode === 'picking' ? toggleWheelSelect : onClickCard}
             isWheelPicking={wheelMode === 'picking'}
             isWheelSelected={wheelSelected.has(game.id)}
+            showAttention={attentionIds?.has(game.id)}
           />
         ))}
       </div>

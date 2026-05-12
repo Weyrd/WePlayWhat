@@ -10,6 +10,7 @@ interface HeaderProps {
   handleWheelBtn: () => void;
   wheelBtnClass: string;
   wheelBtnLabel: string;
+  showAttention?: boolean;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -19,16 +20,26 @@ export const Header: React.FC<HeaderProps> = ({
   setOnlyDiscounted,
   handleWheelBtn,
   wheelBtnClass,
-  wheelBtnLabel
+  wheelBtnLabel,
+  showAttention = false
 }) => {
   return (
     <header className="bg-gray-800 border-b border-gray-700 p-4 shadow-md">
       <div className="max-w-7xl mx-auto relative flex flex-col md:flex-row gap-4 items-center justify-between">
         {/* Left: Brand */}
         <div className="flex justify-center md:justify-start flex-1 w-full md:w-auto">
-          <h1 className="text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-purple-500">
-            {strings.appTitle}
-          </h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl font-black bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-purple-500">
+              {strings.appTitle}
+            </h1>
+            {showAttention && (
+              <span
+                className="inline-block h-2 w-2 rounded-full bg-red-500"
+                title="Needs refresh"
+                aria-label="Needs refresh"
+              />
+            )}
+          </div>
         </div>
 
         {/* Center: Search Bar */}

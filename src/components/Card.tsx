@@ -10,9 +10,16 @@ interface CardProps {
   onClick: (game: Game) => void;
   isWheelPicking?: boolean;
   isWheelSelected?: boolean;
+  showAttention?: boolean;
 }
 
-export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = false, isWheelSelected = false }) => {
+export const Card: React.FC<CardProps> = ({
+  game,
+  onClick,
+  isWheelPicking = false,
+  isWheelSelected = false,
+  showAttention = false,
+}) => {
   const gameIsFree = isGameFree(game);
   const ringClass = isWheelSelected
     ? 'ring-2 ring-purple-500 ring-offset-2 ring-offset-gray-900'
@@ -37,6 +44,9 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
             </svg>
           )}
         </div>
+      )}
+      {showAttention && (
+        <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-[#161b27] z-10" />
       )}
       {game.header_image ? (
         <img 

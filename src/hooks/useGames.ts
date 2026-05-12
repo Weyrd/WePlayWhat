@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import type { LocalGame, Game } from '../models/Game';
 import { fetchSteamData } from '../services/steam';
+import { getIsRateLimited, subscribeRateLimit } from '../fetcher';
 import { CONSTANTS } from '../constants';
 import strings from '../strings.json';
 import toast from 'react-hot-toast';
@@ -14,9 +15,34 @@ export type TableScopeType = typeof TableScope[keyof typeof TableScope];
 
 export function useGames() {
   const [games, setGames] = useState<Game[]>([]);
+  const [isRateLimited, setIsRateLimited] = useState(getIsRateLimited());
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [refreshingIds, setRefreshingIds] = useState<Set<number>>(new Set());
   const hasInitialized = useRef(false);
+  const refreshCountRef = useRef(0);
+
+  const updateRefreshing = (delta: number) => {
+    refreshCountRef.current = Math.max(0, refreshCountRef.current + delta);
+    setIsRefreshing(refreshCountRef.current > 0);
+  };
+
+  const updateRefreshingIds = (gameId: number, isRefreshingGame: boolean) => {
+    setRefreshingIds(prev => {
+      if (isRefreshingGame) {
+        if (prev.has(gameId)) return prev;
+        const next = new Set(prev);
+        next.add(gameId);
+        return next;
+      }
+      if (!prev.has(gameId)) return prev;
+      const next = new Set(prev);
+      next.delete(gameId);
+      return next;
+    });
+  };
 
   const loadGamesData = useCallback(async (scope?: TableScopeType) => {
+    updateRefreshing(1);
     try {
       const res = await fetch(CONSTANTS.GAMES_JSON);
       const localGames: LocalGame[] = await res.json();
@@ -75,9 +101,11 @@ export function useGames() {
       let updatedCount = 0;
 
       for (const game of toFetch) {
+        updateRefreshingIds(game.id, true);
         const fetched = await fetchSteamData(game);
         setGames(prev => prev.map(g => (g.id === game.id ? fetched : g)));
         updatedCount++;
+        updateRefreshingIds(game.id, false);
         await new Promise(resolve => setTimeout(resolve, 300));
       }
 
@@ -86,8 +114,25 @@ export function useGames() {
       }
     } catch {
       console.error("Error loading games.json");
+    } finally {
+      updateRefreshing(-1);
     }
   }, []);
+
+  const refreshGame = useCallback(async (game: Game) => {
+    if (game.isNonSteam) return;
+    updateRefreshing(1);
+    updateRefreshingIds(game.id, true);
+    try {
+      const fetched = await fetchSteamData(game);
+      setGames(prev => prev.map(g => (g.id === game.id ? fetched : g)));
+    } finally {
+      updateRefreshingIds(game.id, false);
+      updateRefreshing(-1);
+    }
+  }, []);
+
+  useEffect(() => subscribeRateLimit(setIsRateLimited), []);
 
   useEffect(() => {
     if (!hasInitialized.current) {
@@ -96,5 +141,5 @@ export function useGames() {
     }
   }, [loadGamesData]);
 
-  return { games, loadGamesData };
+  return { games, loadGamesData, refreshGame, isRateLimited, isRefreshing, refreshingIds };
 }

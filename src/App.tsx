@@ -22,11 +22,27 @@ export interface TagFilter {
 
 type WheelMode = 'idle' | 'picking' | 'result';
 
+const normalizeLastFetched = (value: Game['lastFetched']) => {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+};
+
+const setsEqual = (a: Set<number>, b: Set<number>) => {
+  if (a.size !== b.size) return false;
+  for (const value of a) {
+    if (!b.has(value)) return false;
+  }
+  return true;
+};
+
 function App() {
-  const { games, loadGamesData } = useGames();
+  const { games, loadGamesData, refreshGame, isRateLimited, isRefreshing, refreshingIds } = useGames();
   const [search, setSearch] = useState('');
   const [onlyDiscounted, setOnlyDiscounted] = useState(false);
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
+  const [hasStaleSteamGames, setHasStaleSteamGames] = useState(false);
+  const [staleGameIds, setStaleGameIds] = useState<Set<number>>(new Set());
   const [legendReveal, setLegendReveal] = useState(() => {
     const topRevealRange = 64;
     if (typeof window === 'undefined') return 1;
@@ -202,8 +218,40 @@ function App() {
   const ownedGames = steamGames.filter(g => g.owned);
   const notOwnedGames = steamGames.filter(g => !g.owned);
 
-  const lastFetchedNum = Math.max(...games.map(g => g.lastFetched || 0));
+  const STALE_MS = 1000 * 60 * 60 * 24 * 7;
+  const showAttention = isRateLimited || isRefreshing || hasStaleSteamGames;
+  const attentionIds = useMemo(() => {
+    const ids = new Set<number>(staleGameIds);
+    refreshingIds.forEach(id => ids.add(id));
+    return ids;
+  }, [staleGameIds, refreshingIds]);
+  const lastFetchedNum = Math.max(
+    0,
+    ...games.map(g => normalizeLastFetched(g.lastFetched) ?? 0)
+  );
   const lastFetchedStr = lastFetchedNum > 0 ? new Date(lastFetchedNum).toLocaleString() : '';
+
+  useEffect(() => {
+    const checkStale = () => {
+      const now = Date.now();
+      const nextStaleIds = new Set<number>();
+
+      for (const game of games) {
+        if (game.isNonSteam) continue;
+        const lastFetched = normalizeLastFetched(game.lastFetched);
+        if (!lastFetched || now - lastFetched > STALE_MS) {
+          nextStaleIds.add(game.id);
+        }
+      }
+
+      setHasStaleSteamGames(nextStaleIds.size > 0);
+      setStaleGameIds(prev => (setsEqual(prev, nextStaleIds) ? prev : nextStaleIds));
+    };
+
+    checkStale();
+    const intervalId = window.setInterval(checkStale, 60000);
+    return () => window.clearInterval(intervalId);
+  }, [games, STALE_MS]);
 
   useEffect(() => {
     let rafId: number | null = null;
@@ -246,6 +294,7 @@ function App() {
           handleWheelBtn={handleWheelBtn}
           wheelBtnClass={wheelBtnClass}
           wheelBtnLabel={wheelBtnLabel()}
+          showAttention={showAttention}
         />
 
         <TagFilterBar
@@ -268,6 +317,7 @@ function App() {
             wheelMode={wheelMode}
             wheelSelected={wheelSelected}
             toggleWheelSelect={toggleWheelSelect}
+            attentionIds={attentionIds}
           />
         )}
 
@@ -282,6 +332,7 @@ function App() {
             wheelMode={wheelMode}
             wheelSelected={wheelSelected}
             toggleWheelSelect={toggleWheelSelect}
+            attentionIds={attentionIds}
           />
         )}
 
@@ -296,6 +347,7 @@ function App() {
             wheelMode={wheelMode}
             wheelSelected={wheelSelected}
             toggleWheelSelect={toggleWheelSelect}
+            attentionIds={attentionIds}
           />
         )}
 
@@ -318,6 +370,7 @@ function App() {
             key={selectedGame.id} 
             game={selectedGame} 
             onClose={() => setSelectedGameId(null)} 
+            onRefresh={refreshGame}
           />
         )
       )}

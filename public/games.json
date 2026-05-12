@@ -418,7 +418,7 @@
     "to_be_reviewed": true
   },
   {
-    "id": 2428710,
+    "id": 4089520,
     "name": "Bronzebeard's Tavern",
     "owned": false,
     "to_be_reviewed": true
@@ -861,7 +861,7 @@
     "to_be_reviewed": true
   },
   { "id": 238370, "name": "Magicka 2", "owned": false, "to_be_reviewed": true },
-  { "id": 249550, "name": "NEStalgia", "owned": false },
+  { "id": 249550, "name": "NEStalgia", "owned": true },
   {
     "id": -1001,
     "name": "Neverness to Everness",

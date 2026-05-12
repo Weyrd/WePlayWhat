@@ -1,5 +1,8 @@
 const RATE_LIMIT_WAIT_MS = 30000;
 let rateLimitQueue: Promise<void> = Promise.resolve();
+type RateLimitListener = (isLimited: boolean) => void;
+const rateLimitListeners = new Set<RateLimitListener>();
+let rateLimitPending = 0;
 
 function enqueueRateLimitDelay(): Promise<void> {
   const wait = rateLimitQueue.then(
@@ -7,6 +10,22 @@ function enqueueRateLimitDelay(): Promise<void> {
   );
   rateLimitQueue = wait;
   return wait;
+}
+
+function updateRateLimitPending(delta: number) {
+  rateLimitPending = Math.max(0, rateLimitPending + delta);
+  const isLimited = rateLimitPending > 0;
+  rateLimitListeners.forEach(listener => listener(isLimited));
+}
+
+export function getIsRateLimited(): boolean {
+  return rateLimitPending > 0;
+}
+
+export function subscribeRateLimit(listener: RateLimitListener): () => void {
+  rateLimitListeners.add(listener);
+  listener(getIsRateLimited());
+  return () => rateLimitListeners.delete(listener);
 }
 
 export async function fetchProxy<T>(
@@ -30,7 +49,9 @@ export async function fetchProxy<T>(
 
     if (response.status === 429) {
       // Queue the retry to avoid hammering the proxy on rate limit.
+      updateRateLimitPending(1);
       await enqueueRateLimitDelay();
+      updateRateLimitPending(-1);
       continue;
     }
 
