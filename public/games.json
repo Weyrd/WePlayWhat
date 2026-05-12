@@ -195,6 +195,6 @@
   { "id": 2686630, "name": "Voyagers of Nera", "owned": false, "asia_approved": true },
   { "id": -1001, "name": "Neverness to Everness", "owned": true, "asia_approved": true, "free": true, "non_steam": true, "external_url": "https://nte.perfectworld.com/en/", "image_url": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA229gK5.img" },
   { "id": -1002, "name": "Valorant", "owned": true, "asia_approved": true, "free": true, "non_steam": true, "external_url": "https://playvalorant.com/", "image_url": "https://anthonytommaso.me/images/VALlogo.png" },
-  { "id": -1003, "name": "Lego Fortnite Odyssey", "meh": true, "owned": true, "free": true, "non_steam": true, "external_url": "https://www.fortnite.com/@epic/lego-fortnite-odyssey", "image_url": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70070000020305/f45eb8efa6663f6dd5c487f87deda1c3eaab37397d08d016183afc90389bc401" }
-
+  { "id": -1003, "name": "Lego Fortnite Odyssey", "meh": true, "owned": true, "free": true, "non_steam": true, "external_url": "https://www.fortnite.com/@epic/lego-fortnite-odyssey", "image_url": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70070000020305/f45eb8efa6663f6dd5c487f87deda1c3eaab37397d08d016183afc90389bc401" },
+  { "id": -1004, "name": "Final Fantasy XIV", "owned": true, "asia_approved": true, "non_steam": true, "external_url": "https://fr.finalfantasyxiv.com/", "image_url": "https://mmos.com/wp-content/uploads/2017/04/final-fantasy-xiv-stormblood-yoshi-p-producers-letter-news-banner.jpg" }
 ]
