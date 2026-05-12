@@ -1,9 +1,20 @@
 [
   { "id": 238460, "name": "BattleBlock Theater", "owned": true },
-  { "id": 1123450, "name": "Chicory: A Colorful Tale", "owned": true, "duo": true, "asia_approved": true },
+  {
+    "id": 1123450,
+    "name": "Chicory: A Colorful Tale",
+    "owned": true,
+    "duo": true,
+    "asia_approved": true
+  },
   { "id": 204360, "name": "Castle Crashers", "owned": true },
   { "id": 572890, "name": "Pikuniku", "owned": true, "asia_approved": true },
-  { "id": 35700, "name": "Trine Enchanted Edition", "owned": true, "asia_approved": true },
+  {
+    "id": 35700,
+    "name": "Trine Enchanted Edition",
+    "owned": true,
+    "asia_approved": true
+  },
   {
     "id": 35720,
     "name": "Trine 2: Complete Story",
@@ -41,8 +52,13 @@
   },
   { "id": 1509960, "name": "PICO PARK", "owned": true },
   { "id": 374040, "name": "Portal Knights", "owned": true },
-  { "id": 1599660, "name": "Sackboy: A Big Adventure", "owned": true, "asia_approved": true },
-  { "id": 996770, "name": "Moving Out", "owned": true, "asia_approved":true },
+  {
+    "id": 1599660,
+    "name": "Sackboy: A Big Adventure",
+    "owned": true,
+    "asia_approved": true
+  },
+  { "id": 996770, "name": "Moving Out", "owned": true, "asia_approved": true },
   { "id": 880940, "name": "Pummel Party", "owned": true },
   {
     "id": 413150,
@@ -94,7 +110,13 @@
   },
   { "id": 211820, "name": "Starbound", "owned": false },
   { "id": 2787320, "name": "Revenge of the Savage Planet", "owned": false },
-  { "id": 3124540, "name": "Far Far West", "owned": false, "asia_approved":true, "meh":true },
+  {
+    "id": 3124540,
+    "name": "Far Far West",
+    "owned": false,
+    "asia_approved": true,
+    "meh": true
+  },
   { "id": 1450900, "name": "Desynced", "owned": false, "factory": true },
   {
     "id": 431240,
@@ -108,7 +130,12 @@
   { "id": 905340, "name": "Heave Ho", "owned": true, "asia_approved": true },
   { "id": 620, "name": "Portal 2", "owned": true, "duo": true },
   { "id": 526870, "name": "Satisfactory", "owned": true, "factory": true },
-  { "id": 2868840, "name": "Slay the Spire 2", "owned": true, "asia_approved": true },
+  {
+    "id": 2868840,
+    "name": "Slay the Spire 2",
+    "owned": true,
+    "asia_approved": true
+  },
   { "id": 2211170, "name": "Unrailed 2", "owned": true, "duo": true },
   {
     "id": 252110,
@@ -127,7 +154,13 @@
   },
   { "id": 548430, "name": "Deep Rock Galactic", "owned": false },
   { "id": 2794590, "name": "Scam Line", "owned": false },
-  { "id": 3097560, "name": "Liar's Bar", "owned": false, "asia_approved": true, "meh": true },
+  {
+    "id": 3097560,
+    "name": "Liar's Bar",
+    "owned": false,
+    "asia_approved": true,
+    "meh": true
+  },
   { "id": 1435790, "name": "Escape Simulator", "owned": false },
   { "id": 4331610, "name": "Dome Keeper The Lost Keepers", "owned": false },
   { "id": 2780980, "name": "LOCKDOWN Protocol", "owned": false },
@@ -168,38 +201,732 @@
   { "id": 1313140, "name": "Cult of the Lamb", "owned": false, "duo": true },
   { "id": 323850, "name": "Move or Die", "owned": false },
   { "id": 3003460, "name": "Bang Bang Barrage", "owned": false },
-  { "id": 1242980, "name": "KeyWe", "owned": false, "duo": true, "asia_approved": true },
+  {
+    "id": 1242980,
+    "name": "KeyWe",
+    "owned": false,
+    "duo": true,
+    "asia_approved": true
+  },
   { "id": 1004490, "name": "Tools Up!", "owned": false, "asia_approved": true },
   { "id": 1614550, "name": "Astro Colony", "owned": false, "factory": true },
   { "id": 1127400, "name": "Mindustry", "owned": false, "factory": true },
-  { "id": 641990, "name": "The Escapists 2", "owned": true, "asia_approved": true },
-  { "id": 1062090, "name": "Timberborn", "owned": false, "duo": true, "factory": true },
-  { "id": 1260320, "name": "Party Animals", "owned": false, "asia_approved": true },
+  {
+    "id": 641990,
+    "name": "The Escapists 2",
+    "owned": true,
+    "asia_approved": true
+  },
+  {
+    "id": 1062090,
+    "name": "Timberborn",
+    "owned": false,
+    "duo": true,
+    "factory": true
+  },
+  {
+    "id": 1260320,
+    "name": "Party Animals",
+    "owned": false,
+    "asia_approved": true
+  },
   { "id": 3498580, "name": "Pao Pao", "owned": false, "asia_approved": true },
   { "id": 638230, "name": "Journey", "owned": false, "asia_approved": true },
   { "id": 1203620, "name": "Enshrouded", "owned": false },
   { "id": 2622380, "name": "ELDEN RING NIGHTREIGN", "owned": false },
   { "id": 983870, "name": "FOUNDRY", "owned": true, "factory": true },
-  { "id": 268910, "name": "CupHead", "owned": true, "duo": true, "asia_approved": true },
-  { "id": 286160, "name": "Tabletop Simulator", "owned": true, "asia_approved": true },
+  {
+    "id": 268910,
+    "name": "CupHead",
+    "owned": true,
+    "duo": true,
+    "asia_approved": true
+  },
+  {
+    "id": 286160,
+    "name": "Tabletop Simulator",
+    "owned": true,
+    "asia_approved": true
+  },
   { "id": 335240, "name": "Transformice", "owned": true },
-  { "id": 1801110, "name": "BOKURA", "owned": true, "duo": true, "asia_approved": true },
-  { "id": 1071870, "name": "Biped", "owned": true, "duo": true, "asia_approved": true },
-  { "id": 1641700, "name": "Moving Out 2", "owned": false, "asia_approved": true },
-  { "id": 3744080, "name": "Mining Merchant", "owned": false, "to_be_reviewed": true },
-  { "id": 1969370, "name": "LEGO Party", "owned": false, "asia_approved": true, "meh": true },
-  { "id": 1538550, "name": "LEGO Voayager", "owned": false, "duo": true, "asia_approved": true, "meh": true },
-  { "id": 2999030, "name": "Exploding Kittens 2", "owned": false, "asia_approved": true },
+  {
+    "id": 1801110,
+    "name": "BOKURA",
+    "owned": true,
+    "duo": true,
+    "asia_approved": true
+  },
+  {
+    "id": 1071870,
+    "name": "Biped",
+    "owned": true,
+    "duo": true,
+    "asia_approved": true
+  },
+  {
+    "id": 1641700,
+    "name": "Moving Out 2",
+    "owned": false,
+    "asia_approved": true
+  },
+  {
+    "id": 3744080,
+    "name": "Mining Merchant",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1969370,
+    "name": "LEGO Party",
+    "owned": false,
+    "asia_approved": true,
+    "meh": true
+  },
+  {
+    "id": 1538550,
+    "name": "LEGO Voayager",
+    "owned": false,
+    "duo": true,
+    "asia_approved": true,
+    "meh": true
+  },
+  {
+    "id": 2999030,
+    "name": "Exploding Kittens 2",
+    "owned": false,
+    "asia_approved": true
+  },
   { "id": 1975580, "name": "Wild Woods", "owned": false, "meh": true },
-  { "id": 1568590, "name": "Goose Goose Duck", "owned": false, "to_be_reviewed": true },
-  { "id": 2408820, "name": "Luma Island", "owned": false, "to_be_reviewed": true },
-  { "id": 322330, "name": "Don't Starve Together", "owned": false, "to_be_reviewed": true },
-  { "id": 2686630, "name": "Voyagers of Nera", "owned": false, "asia_approved": true },
-  { "id": 249550, "name": "NEStalgia", "owned": false},
-  { "id": -1001, "name": "Neverness to Everness", "owned": true, "asia_approved": true, "free": true, "non_steam": true, "external_url": "https://nte.perfectworld.com/en/", "image_url": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA229gK5.img" },
-  { "id": -1002, "name": "Valorant", "owned": true, "asia_approved": true, "free": true, "non_steam": true, "external_url": "https://playvalorant.com/", "image_url": "https://anthonytommaso.me/images/VALlogo.png" },
-  { "id": -1003, "name": "Lego Fortnite Odyssey", "meh": true, "owned": true, "free": true, "non_steam": true, "external_url": "https://www.fortnite.com/@epic/lego-fortnite-odyssey", "image_url": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70070000020305/f45eb8efa6663f6dd5c487f87deda1c3eaab37397d08d016183afc90389bc401" },
-  { "id": -1004, "name": "Final Fantasy XIV", "owned": true, "asia_approved": true, "non_steam": true, "external_url": "https://fr.finalfantasyxiv.com/", "image_url": "https://mmos.com/wp-content/uploads/2017/04/final-fantasy-xiv-stormblood-yoshi-p-producers-letter-news-banner.jpg" },
-  { "id": -1005, "name": "SnipperClips", "owned": true, "to_be_reviewed": true, "non_steam": true, "external_url": "Snipperclips", "image_url": "https://images.launchbox-app.com/a9a439c9-1053-41ee-90c4-856fffe14d1e.jpg" },
-  { "id": -1006, "name": "Zelda Four Swords", "owned": true, "asia_approved": true, "non_steam": true, "external_url": "https://www.planetemu.net/rom/nintendo-game-boy-advance/legend-of-zelda-the-a-link-to-the-past-four-swords-europe-en-fr-de-es-it", "image_url": "https://www.nintendo.com/eu/media/images/10_share_images/games_15/gamecube_12/SI_GCN_TheLegendOfZeldaFourSwordsAdventures_image1600w.jpg" }
+  {
+    "id": 1568590,
+    "name": "Goose Goose Duck",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2408820,
+    "name": "Luma Island",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 322330,
+    "name": "Don't Starve Together",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2686630,
+    "name": "Voyagers of Nera",
+    "owned": false,
+    "asia_approved": true
+  },
+  {
+    "id": 585190,
+    "name": "A Gummy's Life",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1222700,
+    "name": "A Way Out",
+    "owned": false,
+    "duo": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 427410,
+    "name": "Abiotic Factor",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 3897620,
+    "name": "Aboxcalipse",
+    "owned": false,
+    "duo": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1549970,
+    "name": "Aliens: Fireteam Elite",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 866140,
+    "name": "Arise: A Simple Story",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 250110,
+    "name": "Assault Android Cactus",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1904480,
+    "name": "Absolum",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1812450,
+    "name": "Bellwright",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 585710,
+    "name": "Blazing Beaks",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 3543890,
+    "name": "Boat Together",
+    "owned": false,
+    "meh": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2235150,
+    "name": "Brain Show",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1354260,
+    "name": "Brave Escape",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1607680,
+    "name": "Bread & Fred",
+    "owned": false,
+    "meh": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 225080,
+    "name": "Brothers: A Tale of Two Sons",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2428710,
+    "name": "Bronzebeard's Tavern",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 330020,
+    "name": "Children of Morta",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  { "id": 971690, "name": "Cake Bash", "owned": false, "to_be_reviewed": true },
+  {
+    "id": 737890,
+    "name": "Catastronauts",
+    "owned": false,
+    "meh": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 319450,
+    "name": "Chariot",
+    "owned": false,
+    "duo": true,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1332430,
+    "name": "Chip 'n Claws vs the Brainiodz",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 724680,
+    "name": "Cosmo's Quickstop",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 774801,
+    "name": "Crab Champions",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 3228590,
+    "name": "Deadzone: Rogue",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 3376480,
+    "name": "Delivery & Beyond",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1637320,
+    "name": "Dome Keeper",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1056690,
+    "name": "Drink More Glurp",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1135230,
+    "name": "Ember Knights",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 427520,
+    "name": "Factorio",
+    "owned": false,
+    "factory": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2336220,
+    "name": "Feed the Cups",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1054430,
+    "name": "Fling to the Finish",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1785150,
+    "name": "Friends vs Friends",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1488430,
+    "name": "Fueled Up",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1455630,
+    "name": "The Game of Life 2",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 815370,
+    "name": "Green Hell",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1217060,
+    "name": "Gunfire Reborn",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 619820,
+    "name": "Heroes of Hammerswatch II",
+    "owned": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 3530680,
+    "name": "How 2 Escape: Lost Submarine",
+    "owned": false,
+    "duo": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 95400,
+    "name": "ibb & obb",
+    "owned": false,
+    "duo": true,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1858650,
+    "name": "In-Sink: A Co-op Escape Adventure",
+    "owned": false,
+    "duo": true,
+    "to_be_reviewed": true
+  },
+  { "id": 1062810, "name": "Inkbound", "owned": false, "to_be_reviewed": true },
+  {
+    "id": 1951780,
+    "name": "Jumping Jazz Cats",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1048660,
+    "name": "Knight Squad 2",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 774291,
+    "name": "Last Man Sitting",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1637400,
+    "name": "Let's Cook Together 2",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  { "id": 2956680, "name": "LORT", "owned": false, "to_be_reviewed": true },
+  {
+    "id": 1752540,
+    "name": "Lost Twins 2",
+    "owned": false,
+    "duo": true,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  { "id": 1445790, "name": "Make Way", "owned": false, "to_be_reviewed": true },
+  {
+    "id": 1532200,
+    "name": "Mars First Logistics",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2204560,
+    "name": "Mineral Madness",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2383760,
+    "name": "Monopoly Madness",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2477090,
+    "name": "Mosa Lina",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 471550,
+    "name": "Nine Parchments",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 829660,
+    "name": "No Time to Relax",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 400080,
+    "name": "Out of Space",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  { "id": 680420, "name": "Outriders", "owned": false, "to_be_reviewed": true },
+  { "id": 794260, "name": "Outward", "owned": false, "to_be_reviewed": true },
+  {
+    "id": 1515210,
+    "name": "The Past Within",
+    "owned": false,
+    "duo": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1922560,
+    "name": "Plants vs. Zombies: Garden Warfare 2",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1043520,
+    "name": "Polterguys: Possession Party",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  { "id": 2949320, "name": "Ratatan", "owned": false, "to_be_reviewed": true },
+  {
+    "id": 2071280,
+    "name": "Ravenswatch",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1818810,
+    "name": "Rhyolite",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 774181,
+    "name": "Rhythm Doctor",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 780310,
+    "name": "The Riftbreaker",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1851610,
+    "name": "River Tails: Stronger Together",
+    "owned": false,
+    "duo": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1206610,
+    "name": "Rubber Bandits",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 301970,
+    "name": "Screencheat",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1244090,
+    "name": "Sea of Stars",
+    "owned": false,
+    "duo": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 324800,
+    "name": "Shadow Warrior 2",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2444750,
+    "name": "Shape of Dreams",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1286580,
+    "name": "Ship of Fools",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 244850,
+    "name": "Space Engineers",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1329500,
+    "name": "SpiderHeck",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1330000,
+    "name": "Stolen Realm",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1432860,
+    "name": "Sun Haven",
+    "owned": false,
+    "asia_approved": true,
+    "to_be_reviewed": true
+  },
+  { "id": 1763250, "name": "SWORN", "owned": false, "to_be_reviewed": true },
+  {
+    "id": 2069040,
+    "name": "Unboxing the Cryptic Killer",
+    "owned": false,
+    "duo": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1211020,
+    "name": "Wobbly Life",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 3564740,
+    "name": "Where Winds Meet",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1910150,
+    "name": "Walk of Life",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 307110,
+    "name": "We Need to Go Deeper",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 839870,
+    "name": "Wilmot's Warehouse",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  { "id": 3041230, "name": "Windrose", "owned": false, "to_be_reviewed": true },
+  {
+    "id": 763890,
+    "name": "Wildermyth",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 327030,
+    "name": "Worms W.M.D",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 958520,
+    "name": "33 Immortals",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1621690,
+    "name": "Core Keeper",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2644050,
+    "name": "Echoes of Elysium",
+    "owned": false,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 2707930,
+    "name": "Palia",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  {
+    "id": 1676840,
+    "name": "For The King II",
+    "owned": false,
+    "gp": true,
+    "to_be_reviewed": true
+  },
+  { "id": 238370, "name": "Magicka 2", "owned": false, "to_be_reviewed": true },
+  { "id": 249550, "name": "NEStalgia", "owned": false },
+  {
+    "id": -1001,
+    "name": "Neverness to Everness",
+    "owned": true,
+    "asia_approved": true,
+    "free": true,
+    "non_steam": true,
+    "external_url": "https://nte.perfectworld.com/en/",
+    "image_url": "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA229gK5.img"
+  },
+  {
+    "id": -1002,
+    "name": "Valorant",
+    "owned": true,
+    "asia_approved": true,
+    "free": true,
+    "non_steam": true,
+    "external_url": "https://playvalorant.com/",
+    "image_url": "https://anthonytommaso.me/images/VALlogo.png"
+  },
+  {
+    "id": -1003,
+    "name": "Lego Fortnite Odyssey",
+    "meh": true,
+    "owned": true,
+    "free": true,
+    "non_steam": true,
+    "external_url": "https://www.fortnite.com/@epic/lego-fortnite-odyssey",
+    "image_url": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70070000020305/f45eb8efa6663f6dd5c487f87deda1c3eaab37397d08d016183afc90389bc401"
+  },
+  {
+    "id": -1004,
+    "name": "Final Fantasy XIV",
+    "owned": true,
+    "asia_approved": true,
+    "non_steam": true,
+    "external_url": "https://fr.finalfantasyxiv.com/",
+    "image_url": "https://mmos.com/wp-content/uploads/2017/04/final-fantasy-xiv-stormblood-yoshi-p-producers-letter-news-banner.jpg"
+  },
+  {
+    "id": -1005,
+    "name": "SnipperClips",
+    "owned": true,
+    "to_be_reviewed": true,
+    "non_steam": true,
+    "external_url": "Snipperclips",
+    "image_url": "https://images.launchbox-app.com/a9a439c9-1053-41ee-90c4-856fffe14d1e.jpg"
+  },
+  {
+    "id": -1008,
+    "name": "Final Fantasy Crystal Chronicles",
+    "owned": false,
+    "to_be_reviewed": true,
+    "non_steam": true,
+    "external_url": "https://ffcrystalchronicles.square-enix-games.com",
+    "image_url": "https://gh.cdn.sewest.net/assets/ident/games/final-fantasy-crystal-chronicles-remastered-edition/en_GB/GamePage_Header_Landscape.jpg"
+  },
+
+  {
+    "id": -1006,
+    "name": "Zelda Four Swords",
+    "owned": true,
+    "asia_approved": true,
+    "non_steam": true,
+    "external_url": "https://www.planetemu.net/rom/nintendo-game-boy-advance/legend-of-zelda-the-a-link-to-the-past-four-swords-europe-en-fr-de-es-it",
+    "image_url": "https://www.nintendo.com/eu/media/images/10_share_images/games_15/gamecube_12/SI_GCN_TheLegendOfZeldaFourSwordsAdventures_image1600w.jpg"
+  }
 ]

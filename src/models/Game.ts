@@ -10,6 +10,7 @@ export interface LocalGame {
   factory?: boolean;
   to_be_reviewed?: boolean;
   meh?: boolean;
+  gp?: boolean;
   non_steam?: boolean;
   external_url?: string;
   image_url?: string;
@@ -24,6 +25,7 @@ export type Game = LocalGame & Partial<SteamAppDetailsData> & {
   isFactory: boolean;
   isToBeReviewed: boolean;
   isMeh: boolean;
+  isGreatPotential: boolean;
   isNonSteam: boolean;
   externalUrl?: string;
   isRemotePlay?: boolean;

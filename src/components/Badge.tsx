@@ -43,6 +43,10 @@ export const Badge: React.FC<BadgeProps> = ({ type }) => {
     [BadgeType.MEH]: {
       className: "text-zinc-300 bg-zinc-400/10 border border-zinc-400/25",
       label: strings.badges.meh
+    },
+    [BadgeType.GP]: {
+      className: "text-teal-300 bg-teal-400/10 border border-teal-400/25",
+      label: strings.badges.gp
     }
   };
 

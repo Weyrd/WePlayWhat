@@ -45,6 +45,7 @@ function App() {
     { label: FilterTag.FACTORY, state: 'ignore' },
     { label: FilterTag.TBR, state: 'ignore' },
     { label: FilterTag.MEH, state: 'ignore' },
+    { label: FilterTag.GP, state: 'ignore' },
     { label: FilterTag.FREE, state: 'ignore' },
   ]);
   const [genreStates, setGenreStates] = useState<Record<string, TagState>>({});
@@ -169,6 +170,7 @@ function App() {
       if (label === FilterTag.FACTORY) return game.isFactory ?? false;
       if (label === FilterTag.TBR) return game.isToBeReviewed ?? false;
       if (label === FilterTag.MEH) return game.isMeh ?? false;
+      if (label === FilterTag.GP) return game.isGreatPotential ?? false;
       if (label === FilterTag.FREE) return isGameFree(game);
 
       const l = label.toLowerCase();

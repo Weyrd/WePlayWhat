@@ -9,6 +9,7 @@ export const FilterTag = {
   FACTORY: strings.badges.factory,
   TBR: strings.badges.tbr,
   MEH: strings.badges.meh,
+  GP: strings.badges.gp,
   FREE: strings.badges.free,
 } as const;
 

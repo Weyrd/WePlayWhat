@@ -9,6 +9,7 @@ export const BadgeType = {
   FACTORY: 'factory',
   TBR: 'tbr',
   MEH: 'meh',
+  GP: 'gp',
 } as const;
 
 export type BadgeTypeAlias = typeof BadgeType[keyof typeof BadgeType];

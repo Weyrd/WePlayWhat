@@ -36,6 +36,7 @@ export function useGames() {
           isFactory: game.factory || false,
           isToBeReviewed: game.to_be_reviewed || false,
           isMeh: game.meh || false,
+          isGreatPotential: game.gp || false,
           isNonSteam,
           externalUrl
         };

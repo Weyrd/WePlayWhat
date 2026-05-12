@@ -64,6 +64,7 @@ export const NonSteamGameModal: React.FC<NonSteamGameModalProps> = ({ game, onCl
             {game.isFactory && <Badge type={BadgeType.FACTORY} />}
             {game.isToBeReviewed && <Badge type={BadgeType.TBR} />}
             {game.isMeh && <Badge type={BadgeType.MEH} />}
+            {game.isGreatPotential && <Badge type={BadgeType.GP} />}
             {game.isAsiaApproved && <Badge type={BadgeType.ASIA_APPROVED} />}
           </div>
 
