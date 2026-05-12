@@ -1,6 +1,5 @@
 # TODO
 
-
 # WePlayWhat (WPW)
 
 A React + TypeScript web app to help you pick co-op games from your Steam list.

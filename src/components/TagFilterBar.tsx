@@ -5,7 +5,7 @@ import strings from '../strings.json';
 interface Props {
   tags: TagFilter[];
   onCycle: (label: string) => void;
-  showLegend?: boolean;
+  legendReveal?: number;
 }
 
 const STATE_ICON: Record<TagState, React.ReactNode> = {
@@ -102,13 +102,15 @@ const LEGEND_STATE_CONFIG: Record<TagState, {
   }
 };
 
-export function TagFilterBar({ tags, onCycle, showLegend = true }: Props) {
+export function TagFilterBar({ tags, onCycle, legendReveal = 1 }: Props) {
   const legendItems = getLegendItems();
+  const maxLegendHeight = 64;
+  const clampedReveal = Math.min(1, Math.max(0, legendReveal));
   return (
     <div className="bg-gray-800 border-b border-gray-700">
       <div
         className="border-b border-gray-700/60 overflow-hidden transition-all duration-200 ease-out"
-        style={{ maxHeight: showLegend ? 64 : 0, opacity: showLegend ? 1 : 0 }}
+        style={{ maxHeight: maxLegendHeight * clampedReveal, opacity: clampedReveal }}
       >
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-center gap-x-6 gap-y-2 flex-wrap">
           {legendItems.map(({ state, label, desc }, index) => {

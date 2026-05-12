@@ -34,6 +34,8 @@ export const fetchSteamData = async (
     dlCompareUrl,
     instantGamingUrl,
     isDuo: game.duo || false,
+    isAsiaApproved: game.asia_approved || false,
+    isFactory: game.factory || false,
   };
 
   try {

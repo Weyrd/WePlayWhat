@@ -5,6 +5,8 @@ export interface LocalGame {
   name: string;
   owned: boolean;
   duo?: boolean;
+  asia_approved?: boolean;
+  factory?: boolean;
 }
 
 export type Game = LocalGame & Partial<SteamAppDetailsData> & {
@@ -12,6 +14,8 @@ export type Game = LocalGame & Partial<SteamAppDetailsData> & {
   dlCompareUrl: string;
   instantGamingUrl: string;
   isDuo: boolean;
+  isAsiaApproved: boolean;
+  isFactory: boolean;
   isRemotePlay?: boolean;
   lastFetched?: number;
 };

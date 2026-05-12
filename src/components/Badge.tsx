@@ -27,6 +27,14 @@ export const Badge: React.FC<BadgeProps> = ({ type }) => {
     [BadgeType.FREE]: {
       className: "text-sky-400 bg-sky-400/10 border border-sky-400/25",
       label: strings.badges.free
+    },
+    [BadgeType.ASIA_APPROVED]: {
+      className: "text-pink-400 bg-pink-400/10 border border-pink-400/25",
+      label: strings.badges.asiaApproved
+    },
+    [BadgeType.FACTORY]: {
+      className: "text-amber-500 bg-amber-500/10 border border-amber-500/25",
+      label: strings.badges.factory
     }
   };
 

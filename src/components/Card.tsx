@@ -90,7 +90,9 @@ export const Card: React.FC<CardProps> = ({ game, onClick, isWheelPicking = fals
           )}
           {game.isRemotePlay && <Badge type={BadgeType.REMOTE_PLAY} />}
           {game.isDuo && <Badge type={BadgeType.DUO} />}
+          {game.isFactory && <Badge type={BadgeType.FACTORY} />}
           {game.owned && gameIsFree && <Badge type={BadgeType.FREE} />}
+          {game.isAsiaApproved && <Badge type={BadgeType.ASIA_APPROVED} />}
         </div>
       </div>
     </div>

@@ -26,14 +26,21 @@ function App() {
   const [search, setSearch] = useState('');
   const [onlyDiscounted, setOnlyDiscounted] = useState(false);
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
-  const [showLegend, setShowLegend] = useState(true);
-  const lastScrollYRef = useRef(0);
+  const [legendReveal, setLegendReveal] = useState(() => {
+    const topRevealRange = 64;
+    if (typeof window === 'undefined') return 1;
+    const initialY = Math.max(0, window.scrollY);
+    return 1 - Math.min(initialY, topRevealRange) / topRevealRange;
+  });
+  const legendRevealRef = useRef(legendReveal);
 
   // --- tag filters ---
   const [tagFilters, setTagFilters] = useState<TagFilter[]>([
     { label: FilterTag.OWNED, state: 'ignore' },
     { label: FilterTag.REMOTE_PLAY, state: 'ignore' },
     { label: FilterTag.DUO, state: 'ignore' },
+    { label: FilterTag.ASIA_APPROVED, state: 'ignore' },
+    { label: FilterTag.FACTORY, state: 'ignore' },
     { label: FilterTag.FREE, state: 'ignore' },
   ]);
   const [genreStates, setGenreStates] = useState<Record<string, TagState>>({});
@@ -153,6 +160,8 @@ function App() {
       if (label === FilterTag.DUO) return game.isDuo ?? false;
       if (label === FilterTag.REMOTE_PLAY) return game.isRemotePlay ?? false;
       if (label === FilterTag.OWNED) return game.owned ?? false;
+      if (label === FilterTag.ASIA_APPROVED) return game.isAsiaApproved ?? false;
+      if (label === FilterTag.FACTORY) return game.isFactory ?? false;
       if (label === FilterTag.FREE) return isGameFree(game);
 
       const l = label.toLowerCase();
@@ -169,10 +178,10 @@ function App() {
       .filter(g => !onlyDiscounted || (g.price_overview?.discount_percent || 0) > 0)
       .filter(g => {
         if (tagOnlys.length > 0 && !tagOnlys.every(t => hasTag(g, t.label))) return false;
-        if (tagIncludes.some(t => !hasTag(g, t.label))) return false;
+        if (tagIncludes.length > 0 && !tagIncludes.some(t => hasTag(g, t.label))) return false;
         if (tagExcludes.some(t => hasTag(g, t.label))) return false;
         if (genreOnlys.length > 0 && !genreOnlys.every(genre => hasGenre(g, genre.label))) return false;
-        if (genreIncludes.some(genre => !hasGenre(g, genre.label))) return false;
+        if (genreIncludes.length > 0 && !genreIncludes.some(genre => hasGenre(g, genre.label))) return false;
         if (genreExcludes.some(genre => hasGenre(g, genre.label))) return false;
         return true;
       })
@@ -186,24 +195,32 @@ function App() {
   const lastFetchedStr = lastFetchedNum > 0 ? new Date(lastFetchedNum).toLocaleString() : '';
 
   useEffect(() => {
-    const onScroll = () => {
-      const currentY = window.scrollY;
-      const lastY = lastScrollYRef.current;
+    let rafId: number | null = null;
+    const topRevealRange = 64;
 
-      if (currentY <= 8) {
-        setShowLegend(true);
-      } else if (currentY > lastY) {
-        setShowLegend(false);
-      } else if (currentY < lastY) {
-        setShowLegend(true);
-      }
-
-      lastScrollYRef.current = currentY;
+    const setLegendRevealValue = (value: number) => {
+      const clamped = Math.min(1, Math.max(0, value));
+      if (legendRevealRef.current === clamped) return;
+      legendRevealRef.current = clamped;
+      setLegendReveal(clamped);
     };
 
-    lastScrollYRef.current = window.scrollY;
+    const onScroll = () => {
+      if (rafId !== null) return;
+
+      rafId = window.requestAnimationFrame(() => {
+        const currentY = Math.max(0, window.scrollY);
+        const reveal = 1 - Math.min(currentY, topRevealRange) / topRevealRange;
+        setLegendRevealValue(reveal);
+        rafId = null;
+      });
+    };
+
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
@@ -223,7 +240,7 @@ function App() {
         <TagFilterBar
           tags={tagFilters}
           onCycle={cycleTagState}
-          showLegend={showLegend}
+          legendReveal={legendReveal}
         />
         <GenreFilterBar genres={genreFilters} onCycle={cycleGenreState} />
       </div>

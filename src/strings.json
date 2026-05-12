@@ -81,7 +81,9 @@
     "notOwned": "Not Owned",
     "duo": "Duo",
     "remotePlay": "Remote Play",
-    "free": "Free"
+    "free": "Free",
+    "asiaApproved": "Asia 👍",
+    "factory": "Factory"
   },
   "status": {
     "loading": "Loading...",
